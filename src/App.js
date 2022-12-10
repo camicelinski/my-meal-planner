@@ -1,6 +1,8 @@
 import React from 'react'
 import RecipesAPI from './modules/spoonacular/spoonacular.api.js'
 import RecipesList from './components/RecipesList'
+import MealsPlanner from './components/MealsPlanner'
+// import MonthlyPlanner from './components/Calendar/MonthlyPlanner'
 const SpoonacularAPI = new RecipesAPI()
 
 export const App = () => {
@@ -10,8 +12,6 @@ export const App = () => {
   const getRecipesData = () => {
     SpoonacularAPI.getRecipes(phrase)
       .then(data => setRecipesData(data))
-
-    console.log(recipesData)
   }
 
   const handleChange = (e) => {
@@ -27,6 +27,9 @@ export const App = () => {
           onChange={handleChange}
         />
         <button onClick={getRecipesData}>Get Recipes</button>
+      </section>
+      <section>
+        <MealsPlanner />
       </section>
       {recipesData && <RecipesList recipesData={recipesData} />}
     </div>
