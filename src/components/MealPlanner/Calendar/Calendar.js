@@ -18,17 +18,18 @@ const MOCK_LOADING_TIME = 1000
 // const SAMPLE_META = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 
 // The "main" component, our actual calendar
-const Calendar = ({ month, year, preloadedEvents = [] }) => {
+const Calendar = ({ month, year, preloadedMeals = [] }) => {
   const selectedDate = new Date(year, month - 1)
+  const parsedMeals = parseEvents(preloadedMeals)
+  console.log(parsedMeals)
 
   const [date, setDate] = useState(selectedDate)
-  const [viewingEvent, setViewingEvent] = useState(false)
-  const [showingEventForm, setShowingEventForm] = useState({ visible: false })
+  const [viewingMeal, setViewingMeal] = useState(false)
+  const [showingMealForm, setShowingMealForm] = useState({ visible: false })
   const [isLoading, setIsLoading] = useState(false)
   const [feedback, setFeedback] = useState()
-
-  const parsedEvents = parseEvents(preloadedEvents)
-  const [events, setEvents] = useState(parsedEvents)
+  const [meals, setMeals] = useState(parsedMeals)
+  console.log(meals)
 
   useEffect(() => {
   // You could retrieve fresh events data here
@@ -44,9 +45,9 @@ const Calendar = ({ month, year, preloadedEvents = [] }) => {
     console.log("Date has changed... Let's load some fresh data")
   }, [date])
 
-  const addEvent = (event) => {
+  const addMeal = (meal) => {
     setIsLoading(true)
-    setShowingEventForm({ visible: false })
+    setShowingMealForm({ visible: false })
 
     // These timeouts are to imitate HTTP requests
     // So in a real impementation, you'd interact
@@ -55,44 +56,45 @@ const Calendar = ({ month, year, preloadedEvents = [] }) => {
     // Likewise for `editEvent` and `deleteEvent`
     // below
     setTimeout(() => {
-      const parsedEvents = parseEvents([event])
+      const parsedMeals = parseEvents([meal])
 
-      const updatedEvents = [...events]
-      updatedEvents.push(parsedEvents[0])
+      const updatedMeals = [...meals]
+      updatedMeals.push(parsedMeals[0])
+      console.log(updatedMeals)
 
-      setEvents(updatedEvents)
+      setMeals(updatedMeals)
       setIsLoading(false)
-      showFeedback({ message: 'Event created successfully', type: 'success' })
+      showFeedback({ message: 'Meal created successfully', type: 'success' })
     }, MOCK_LOADING_TIME)
   }
 
-  const editEvent = (event) => {
+  const editMeal = (meal) => {
     setIsLoading(true)
-    setShowingEventForm({ visible: false })
+    setShowingMealForm({ visible: false })
 
     setTimeout(() => {
-      const parsedEvent = parseEvents([event])
+      const parsedMeal = parseEvents([meal])
 
-      const updatedEvents = [...events].map(updatedEvent => {
-        return updatedEvent.id === event.id ? parsedEvent[0] : updatedEvent
+      const updatedMeals = [...meals].map(updatedMeal => {
+        return updatedMeal.id === meal.id ? parsedMeal[0] : updatedMeal
       })
 
-      setEvents(updatedEvents)
+      setMeals(updatedMeals)
       setIsLoading(false)
-      showFeedback({ message: 'Event edited successfully', type: 'success' })
+      showFeedback({ message: 'Meal edited successfully', type: 'success' })
     }, MOCK_LOADING_TIME)
   }
 
-  const deleteEvent = (event) => {
+  const deleteMeal = (meal) => {
     setIsLoading(true)
-    setViewingEvent(null)
+    setViewingMeal(null)
 
     setTimeout(() => {
-      const updatedEvents = [...events].filter(finalEvent => finalEvent.id !== event.id)
+      const updatedMeals = [...meals].filter(finalMeal => finalMeal.id !== meal.id)
 
-      setEvents(updatedEvents)
+      setMeals(updatedMeals)
       setIsLoading(false)
-      showFeedback({ message: 'Event deleted successfully', type: 'success' })
+      showFeedback({ message: 'Meal deleted successfully', type: 'success' })
     }, MOCK_LOADING_TIME)
   }
 
@@ -117,36 +119,36 @@ const Calendar = ({ month, year, preloadedEvents = [] }) => {
       <Navigation
         date={date}
         setDate={setDate}
-        setShowingEventForm={setShowingEventForm}
+        setShowingMealForm={setShowingMealForm}
       />
 
       <DayLabels />
 
       <Grid
         date={date}
-        events={events}
-        setShowingEventForm={setShowingEventForm}
-        setViewingEvent={setViewingEvent}
+        meals={parsedMeals}
+        setShowingMealForm={setShowingMealForm}
+        setViewingMeal={setViewingMeal}
         actualDate={date}
       />
 
-      {viewingEvent &&
+      {viewingMeal &&
         <Meal
-          event={viewingEvent}
-          setShowingEventForm={setShowingEventForm}
-          setViewingEvent={setViewingEvent}
-          deleteEvent={deleteEvent}
+          event={viewingMeal}
+          setShowingMealForm={setShowingMealForm}
+          setViewingMeal={setViewingMeal}
+          deleteMeal={deleteMeal}
         />
       }
 
-      {showingEventForm && showingEventForm.visible &&
+      {showingMealForm && showingMealForm.visible &&
         <MealForm
-          withEvent={showingEventForm.withEvent}
-          preselectedDate={showingEventForm.preselectedDate}
-          setShowingEventForm={setShowingEventForm}
-          addEvent={addEvent}
-          editEvent={editEvent}
-          setViewingEvent={setViewingEvent}
+          withMeal={showingMealForm.withMeal}
+          preselectedDate={showingMealForm.preselectedDate}
+          setShowingMealForm={setShowingMealForm}
+          addMeal={addMeal}
+          editMeal={editMeal}
+          setViewingMeal={setViewingMeal}
         />
       }
     </div>

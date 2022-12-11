@@ -4,13 +4,12 @@ import React from 'react'
 // An individual event displayed within the calendar grid itself
 // can be clicked to open the main event view
 
-const MealSmallIcon = ({ event, setViewingEvent }) => {
+const MealSmallIcon = ({ meal, setViewingMeal }) => {
   return (
     <div
-      className={`miniEvent ${event.type ? event.type.toLowerCase() : 'standard'}`}
-      onClick={() => setViewingEvent(event)}
+      className={`miniEvent ${meal.type ? meal.type.toLowerCase() : 'standard'}`}
+      onClick={() => setViewingMeal(meal)}
     >
-      {event.name}
     </div>
   )
 }

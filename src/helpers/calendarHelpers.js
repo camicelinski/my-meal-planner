@@ -38,10 +38,8 @@ export const dateToInputFormat = (date) => {
 
   const month = pad(date.getMonth() + 1)
   const day = pad(date.getDate())
-  const hours = pad(date.getHours())
-  const minutes = pad(date.getMinutes())
 
-  return `${date.getFullYear()}-${month}-${day}T${hours}:${minutes}`
+  return `${date.getFullYear()}-${month}-${day}`
 }
 
 // Could be used to filter out invalid events data also
@@ -49,24 +47,26 @@ export const dateToInputFormat = (date) => {
 // to contain valid to/from dates
 export const parseEvents = (events) => {
   return events.map(event => {
-    const from = new Date(event.dateFrom)
-    const to = new Date(event.dateTo)
+    const date = new Date(event.date)
 
     return {
       ...event,
-      from,
-      to
+      date
     }
   })
 }
 
 export const findEventsForDate = (events, date) => {
-  const dateTime = date.getTime()
+  // console.log(date)
+  // const dateTime = date.getTime()
 
   return events.filter(event => {
-    const eventFromTime = toStartOfDay(event.from).getTime()
-    const eventToTime = toStartOfDay(event.to).getTime()
+    // console.log(toStartOfDay(event.date))
+    const eventDate = toStartOfDay(event.date)
+    // const eventFromTime = toStartOfDay(event.from).getTime()
+    // const eventToTime = toStartOfDay(event.to).getTime()
 
-    return (dateTime >= eventFromTime && dateTime <= eventToTime)
+    return (date >= eventDate && date <= eventDate)
+    // return (dateTime >= eventFromTime && dateTime <= eventToTime)
   })
 }

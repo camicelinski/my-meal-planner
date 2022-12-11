@@ -1,16 +1,16 @@
 import React from 'react'
-import RecipesAPI from './modules/spoonacular/spoonacular.api.js'
-import RecipesList from './components/RecipesList'
-import MealsPlanner from './components/MealsPlanner'
+import SpoonacularAPI from '../../modules/spoonacular/spoonacular.api.js'
+import RecipesList from '../RecipesList'
+import MealPlanner from '../MealPlanner'
 // import MonthlyPlanner from './components/Calendar/MonthlyPlanner'
-const SpoonacularAPI = new RecipesAPI()
+const RecipesAPI = new SpoonacularAPI()
 
 export const App = () => {
   const [recipesData, setRecipesData] = React.useState(null)
   const [phrase, setPhrase] = React.useState('')
 
   const getRecipesData = () => {
-    SpoonacularAPI.getRecipes(phrase)
+    RecipesAPI.getRecipes(phrase)
       .then(data => setRecipesData(data))
   }
 
@@ -29,7 +29,7 @@ export const App = () => {
         <button onClick={getRecipesData}>Get Recipes</button>
       </section>
       <section>
-        <MealsPlanner />
+        <MealPlanner />
       </section>
       {recipesData && <RecipesList recipesData={recipesData} />}
     </div>

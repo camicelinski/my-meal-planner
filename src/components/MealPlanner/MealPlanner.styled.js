@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledMealsPlanner = styled.div`
+const StyledMealPlanner = styled.div`
   .calendar {
   display: flex;
   flex-wrap: wrap;
@@ -57,16 +57,32 @@ const StyledMealsPlanner = styled.div`
   background: #1f86ef;
   color: white;
   padding: 3px;
-  font-size: 1em;
+  margin: 2px;
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+  border-radius: 50%;
   cursor: pointer;
 }
 
-.miniEvent.holiday {
-  background: #3fb73f;
+.miniEvent.breakfast {
+  background: #2980B9;
 }
 
-.miniEvent.busy {
-  background: #e7713c;
+.miniEvent.elevenses {
+  background: #27AE60;
+}
+
+.miniEvent.lunch {
+  background: #C0392B;
+}
+
+.miniEvent.snacks {
+  background: #D35400;
+}
+
+.miniEvent.dinner {
+  background: #F39C12;
 }
 
 .navigation {
@@ -344,4 +360,4 @@ button.red {
 
 `
 
-export default StyledMealsPlanner
+export default StyledMealPlanner

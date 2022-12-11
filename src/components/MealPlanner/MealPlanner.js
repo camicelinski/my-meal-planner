@@ -1,74 +1,66 @@
 import React from 'react'
-import StyledMealsPlanner from './MealsPlanner.styled'
+import StyledMealPlanner from './MealPlanner.styled'
 import Calendar from './Calendar/Calendar'
+import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api.js'
 
-const SAMPLE_META = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+// const SAMPLE_META = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 
-const MealsPlanner = () => {
+const MealPlanner = () => {
+  const mealPlannerAPI = new MealPlannerAPI()
+
+  const [data, setData] = React.useState([])
+  React.useEffect(() => {
+    mealPlannerAPI.load('/meals').then(data => setData(data))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  console.log(data)
+
+  // const data = mealPlannerAPI.load()
+  // .then((data) => setPreloadedMeals(data.meals))
+  // console.log(preloadedMeals)
+
   return (
-    <StyledMealsPlanner>
+    <StyledMealPlanner>
       <Calendar
         month={12}
         year={2022}
-        preloadedEvents={[
+        preloadedMeals={data}
+        /* preloadedMeals={[
           {
             id: 1,
-            name: [
+            menu: [
               'Eggs Benedict',
               'Banoffee'
             ],
-            dateFrom: '2022-12-12T07:30',
-            dateTo: '2022-12-12T08:15',
-            meta: SAMPLE_META,
+            date: '2022-12-12',
+            note: SAMPLE_META,
             type: 'Breakfast'
           },
           {
             id: 2,
-            name: 'Meeting',
-            dateFrom: '2021-10-01T09:45',
-            dateTo: '2021-10-04T22:00',
-            meta: SAMPLE_META,
-            type: 'Standard'
+            menu: [
+              'Apple'
+            ],
+            date: '2022-12-14',
+            note: SAMPLE_META,
+            type: 'Elevenses'
           },
           {
             id: 3,
-            name: 'Away',
-            dateFrom: '2021-10-01T01:00',
-            dateTo: '2021-10-01T23:59',
-            meta: SAMPLE_META,
-            type: 'Busy'
-          },
-          {
-            id: 4,
-            name: 'Inspection',
-            dateFrom: '2021-10-19T07:30',
-            dateTo: '2021-10-21T23:59',
+            name: 'Meeting',
+            dateFrom: '2022-12-01T09:45',
+            dateTo: '2022-12-04T22:00',
             meta: SAMPLE_META,
             type: 'Standard'
-          },
-          {
-            id: 5,
-            name: 'Holiday - Greece',
-            dateFrom: '2021-10-14T08:00',
-            dateTo: '2021-10-16T23:59',
-            meta: SAMPLE_META,
-            type: 'Holiday'
-          },
-          {
-            id: 6,
-            name: 'Holiday - Spain',
-            dateFrom: '2021-10-29T08:00',
-            dateTo: '2021-10-31T23:59',
-            meta: SAMPLE_META,
-            type: 'Holiday'
           }
-        ]}
+        ]} */
       />
-    </StyledMealsPlanner>
+    </StyledMealPlanner>
   )
 }
 
-export default MealsPlanner
+export default MealPlanner
 
 /*
 // Sample events calendar build, explained and detailed over at

@@ -1,0 +1,34 @@
+{
+  "meals": [
+    {
+      "date": "2022-12-08",
+      "type": "breakfast",
+      "menu": [
+        "Eggs benedict"
+      ],
+      "note": "Special breakfast for Mothers Day",
+      "id": 1
+    },
+    {
+      "date": "2022-12-18",
+      "type": "lunch",
+      "menu": [
+        "Green pasta with chicken"
+      ],
+      "note": "",
+      "id": 2
+    },
+    {
+      "date": "2022-12-21",
+      "type": "snacks",
+      "menu": [
+        "Apple",
+        "Strawberry"
+      ],
+      "note": "",
+      "id": 3
+    }
+  ],
+  "recipes": [],
+  "groceryList": []
+}

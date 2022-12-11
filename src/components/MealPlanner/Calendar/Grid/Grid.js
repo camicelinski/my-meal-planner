@@ -9,7 +9,7 @@ import {
 
 // The grid of days, renders a month's worth of days and
 // also populates the events on the relevant dates
-const Grid = ({ date, events, setViewingEvent, setShowingEventForm, actualDate }) => {
+const Grid = ({ date, meals, setViewingMeal, setShowingMealForm, actualDate }) => {
   const ROWS_COUNT = 6
   const currentDate = toStartOfDay(new Date())
 
@@ -23,7 +23,7 @@ const Grid = ({ date, events, setViewingEvent, setShowingEventForm, actualDate }
   const dates = []
   for (let i = 0; i < (ROWS_COUNT * 7); i++) {
     const date = new Date(startingDate)
-    dates.push({ date, events: findEventsForDate(events, date) })
+    dates.push({ date, meals: findEventsForDate(meals, date) })
     startingDate.setDate(startingDate.getDate() + 1)
   }
 
@@ -39,16 +39,16 @@ const Grid = ({ date, events, setViewingEvent, setShowingEventForm, actualDate }
               {date.date.getDate()}
               <button
                 className={'addEventOnDay'}
-                onClick={() => setShowingEventForm({ visible: true, preselectedDate: date.date })}
+                onClick={() => setShowingMealForm({ visible: true, preselectedDate: date.date })}
               >
                 +
               </button>
             </div>
-            {date.events.map((event, index) =>
+            {date.meals.map((meal, index) =>
               <MealSmallIcon
                 key={index}
-                event={event}
-                setViewingEvent={setViewingEvent}
+                meal={meal}
+                setViewingMeal={setViewingMeal}
               />
             )}
           </div>
