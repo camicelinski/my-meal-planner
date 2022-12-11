@@ -3,7 +3,7 @@
     {      
       "date": "2022-12-08",
       "type": "breakfast",
-      "menu": [
+      "name": [
         "Eggs benedict"
       ],
       "note": "Special breakfast for Mothers Day",
@@ -12,7 +12,7 @@
     {      
       "date": "2022-12-18",
       "type": "lunch",
-      "menu": [
+      "name": [
         "Green pasta with chicken"
       ],
       "note": "",
@@ -21,7 +21,7 @@
     {      
       "date": "2022-12-21",
       "type": "snacks",
-      "menu": [
+      "name": [
         "Apple",
         "Strawberry"
       ],

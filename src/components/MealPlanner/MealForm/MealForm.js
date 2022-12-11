@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
+import StyledLink from '../../../styled/components/Link.styled'
 import Modal from '../../General/Modal'
-import SpoonacularAPI from '../../../modules/spoonacular/spoonacular.api.js'
-import RecipesList from '../../RecipesList'
+// import SpoonacularAPI from '../../../modules/spoonacular/spoonacular.api.js'
+// import RecipesList from '../../RecipesList'
 import { dateToInputFormat } from '../../../helpers/calendarHelpers'
 
-const RecipesAPI = new SpoonacularAPI()
+// const RecipesAPI = new SpoonacularAPI()
 
 // Form to add new events or edit existing events
 // In a real implementation, we'd have some frontend
@@ -17,9 +18,11 @@ const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingM
     newMeal.date = dateToInputFormat(preselectedDate)
   }
   const [meal, setMeal] = React.useState(newMeal)
-  const [recipesData, setRecipesData] = React.useState(null)
-  const [phrase, setPhrase] = React.useState('')
+  // const [recipesData, setRecipesData] = React.useState(null)
+  // const [phrase, setPhrase] = React.useState('')
+  const activeClass = 'active'
 
+  /*
   const getRecipesData = () => {
     RecipesAPI.getRecipes(phrase)
       .then(data => setRecipesData(data))
@@ -27,7 +30,7 @@ const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingM
 
   const handleChange = (e) => {
     setPhrase(e.target.value)
-  }
+  } */
 
   return (
     <Modal
@@ -48,16 +51,27 @@ const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingM
           </select>
         </label>
 
-        <label>Menu
+        <label>Name
           <input
             type={'text'}
             placeholder={'e.g. pasta'}
-            // defaultValue={meal.menu}
-            // onChange={(e) => setMeal({ ...meal, menu: e.target.value })}
-            onChange={handleChange}
+            defaultValue={meal.name}
+            onChange={(e) => setMeal({ ...meal, name: e.target.value })}
           />
-          <button onClick={getRecipesData}>Get Recipes</button>
-          {recipesData && <RecipesList recipesData={recipesData} />}
+          <button>
+            <StyledLink
+              activeClassName={activeClass}
+              to={'/recipes/1'}
+            >
+              Select from My Recipes
+            </StyledLink>
+          </button>
+          <StyledLink
+            activeClassName={activeClass}
+            to={'/recipes/1'}
+          >
+            <button>Get New Recipe</button>
+          </StyledLink>
         </label>
 
         <label>Date
@@ -119,4 +133,12 @@ export default MealForm
             onChange={(e) => setMeal({ ...meal, menu: e.target.value })}
           />
         </label>
+
+        <input
+            type={'text'}
+            placeholder={'e.g. pasta'}
+            // defaultValue={meal.name}
+            // onChange={(e) => setMeal({ ...meal, menu: e.target.value })}
+            onChange={handleChange}
+          />
 */

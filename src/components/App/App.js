@@ -1,7 +1,8 @@
 import React from 'react'
+import { HashRouter as Router } from 'react-router-dom'
 import SpoonacularAPI from '../../modules/spoonacular/spoonacular.api.js'
 import RecipesList from '../RecipesList'
-import MealPlanner from '../MealPlanner'
+import AnimatedSwitch from '../AnimatedSwitch.js'
 // import MonthlyPlanner from './components/Calendar/MonthlyPlanner'
 const RecipesAPI = new SpoonacularAPI()
 
@@ -19,20 +20,20 @@ export const App = () => {
   }
 
   return (
-    <div className={'App'}>
-      <section className={'controls'}>
-        <input
-          type={'text'}
-          placeholder={'e.g. pasta'}
-          onChange={handleChange}
-        />
-        <button onClick={getRecipesData}>Get Recipes</button>
-      </section>
-      <section>
-        <MealPlanner />
-      </section>
-      {recipesData && <RecipesList recipesData={recipesData} />}
-    </div>
+    <Router>
+      <div className={'App'}>
+        <section className={'controls'}>
+          <input
+            type={'text'}
+            placeholder={'e.g. pasta'}
+            onChange={handleChange}
+          />
+          <button onClick={getRecipesData}>Get Recipes</button>
+        </section>
+        <AnimatedSwitch />
+        {recipesData && <RecipesList recipesData={recipesData} />}
+      </div>
+    </Router>
   )
 }
 
