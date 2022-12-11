@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 // import PostItemSmall from '../components/PostItem/PostItemSmall'
-import Pagination from '../components/Pagination/Pagination'
+// import Pagination from '../components/Pagination/Pagination'
 import RecipesList from '../components/RecipesList'
 // import { sortByDate } from '../helpers/sortByDate'
 import SpoonacularAPI from '../modules/spoonacular/spoonacular.api'
@@ -38,12 +38,10 @@ const Recipes = () => {
           <button onClick={getRecipesData}>Get Recipes</button>
         </section>
         {recipesData && (
-          <Pagination
-            path={pageUrl}
-            limit={5}
-          >
-            {recipesData && <RecipesList recipesData={recipesData} />}
-          </Pagination>
+          <RecipesList
+            recipesData={recipesData}
+            url={pageUrl}
+          />
         )}
       </Route>
     </main>
