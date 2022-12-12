@@ -6,8 +6,8 @@ class SpoonacularAPI {
     return this._fetch(`/complexSearch?query=${phrase}&apiKey=${this.key}&instructionsRequired=true&addRecipeInformation=true&sort=popularity&sortDirection=desc&number=10`)
   }
 
-  getRecipeInfo = (id) => {
-    return this._fetch(`/${id}/information&apiKey=${this.key}`)
+  getRecipe = (id) => {
+    return this._fetch(`/${id}/information?includeNutrition=false&apiKey=${this.key}`)
   }
 
   handleErrors (resp) {

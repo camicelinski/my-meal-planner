@@ -5,6 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import MealPlanner from './MealPlanner'
 import NotFound from '../pages/NotFound'
 import Recipes from '../pages/Recipes'
+import Recipe from '../pages/Recipe'
 // import CategoryPosts from '../pages/CategoryPosts'
 // import Post from '../pages/Post'
 // import AboutUs from '../pages/AboutUs'
@@ -24,6 +25,10 @@ const Routes = ({ location }) => {
       <Route path={'/recipes/:page'} >
         <Recipes />
       </Route>
+      <Route
+        path={'/recipe/:id/:title'}
+        component={Recipe}
+      />
       <Route
         path={'/404.html'}
         component={NotFound}

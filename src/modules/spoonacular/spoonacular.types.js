@@ -1,10 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
-const SET_CURRENT_RATE = 'setCurrentRate'
-const SET_PRICE_BY_DATE = 'setPriceByDate'
-const SET_CURRENCIES_LIST = 'setCurrenciesList'
+const SET_RECIPES = 'setRecipes'
+const SET_RECIPE_INFO = 'setRecipeInfo'
 
 export default {
-  SET_CURRENT_RATE,
-  SET_PRICE_BY_DATE,
-  SET_CURRENCIES_LIST
+  SET_RECIPES,
+  SET_RECIPE_INFO
 }

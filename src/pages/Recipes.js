@@ -1,25 +1,30 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 // import PostItemSmall from '../components/PostItem/PostItemSmall'
-// import Pagination from '../components/Pagination/Pagination'
-import RecipesList from '../components/RecipesList'
+// import StyledLink from '../styled/components/Link.styled'
+import { useSelector, useDispatch } from 'react-redux'
+import Pagination from '../components/Pagination/Pagination'
+import RecipeItemSmall from '../components/RecipeItemSmall'
 // import { sortByDate } from '../helpers/sortByDate'
-import SpoonacularAPI from '../modules/spoonacular/spoonacular.api'
+// import SpoonacularAPI from '../modules/spoonacular/spoonacular.api'
+import { getRecipesList } from '../modules/spoonacular/spoonacular.actions'
 
 const Recipes = () => {
   // const { uid } = useParams()
   // const [documents] = useAllPrismicDocumentsByType('blog_post')
+  const { recipes } = useSelector((state) => state.spoonacular)
+  const dispatch = useDispatch()
 
-  const RecipesAPI = new SpoonacularAPI()
+  // const RecipesAPI = new SpoonacularAPI()
 
-  const [recipesData, setRecipesData] = React.useState(null)
   const [phrase, setPhrase] = React.useState('')
 
   const pageUrl = '/recipes'
+  // const activeClass = 'active'
 
   const getRecipesData = () => {
-    RecipesAPI.getRecipes(phrase)
-      .then(data => setRecipesData(data))
+    dispatch(getRecipesList(phrase))
+    console.log(recipes)
   }
 
   const handleChange = (e) => {
@@ -28,20 +33,29 @@ const Recipes = () => {
 
   return (
     <main>
+      <section className={'controls'}>
+        <input
+          type={'text'}
+          placeholder={'e.g. pasta'}
+          onChange={handleChange}
+        />
+        <button onClick={getRecipesData}>Get Recipes</button>
+      </section>
       <Route path={`${pageUrl}/:page`}>
-        <section className={'controls'}>
-          <input
-            type={'text'}
-            placeholder={'e.g. pasta'}
-            onChange={handleChange}
-          />
-          <button onClick={getRecipesData}>Get Recipes</button>
-        </section>
-        {recipesData && (
-          <RecipesList
-            recipesData={recipesData}
-            url={pageUrl}
-          />
+        {recipes && (
+          <Pagination
+            path={pageUrl}
+            limit={5}
+          >
+            {recipes && (
+              recipes.map((recipe) => (
+                <RecipeItemSmall
+                  key={recipe.id}
+                  recipe={recipe}
+                />
+              ))
+            )}
+          </Pagination>
         )}
       </Route>
     </main>

@@ -1,7 +1,37 @@
 import types from './spoonacular.types'
-import ExchangeratesAPI from './spoonacular.api'
+import SpoonacularAPI from './spoonacular.api'
 
-const ratesAPI = new ExchangeratesAPI()
+const RecipesAPI = new SpoonacularAPI()
+
+export const setRecipes = (recipes) => {
+  return {
+    type: types.SET_RECIPES,
+    payload: recipes
+  }
+}
+
+export const setRecipeInfo = (recipeInfo) => {
+  return {
+    type: types.SET_RECIPE_INFO,
+    payload: recipeInfo
+  }
+}
+
+export const getRecipesList = (phrase) => (dispatch, getState) => {
+  RecipesAPI.getRecipes(phrase)
+    .then((resp) => dispatch(setRecipes(resp.results)))
+}
+
+export const getRecipeInfo = (id) => (dispatch, getState) => {
+  RecipesAPI.getRecipe(id)
+    .then((resp) => dispatch(setRecipeInfo(resp)))
+}
+
+/*
+const getRecipesData = () => {
+  RecipesAPI.getRecipes(phrase)
+    .then(data => setRecipesData(data))
+}
 
 export const setCurrentRate = (rate) => {
   return {
@@ -38,3 +68,4 @@ export const getCurrenciesList = () => (dispatch, getState) => {
   ratesAPI.getCurrenciesList()
     .then((resp) => dispatch(setCurrenciesList(resp.rates)))
 }
+*/

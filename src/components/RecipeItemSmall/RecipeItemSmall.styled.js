@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledRecipe = styled.div`
+const StyledRecipeItemSmall = styled.div`
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 20px;
@@ -17,4 +17,4 @@ const StyledRecipe = styled.div`
   }
 `
 
-export default StyledRecipe
+export default StyledRecipeItemSmall
