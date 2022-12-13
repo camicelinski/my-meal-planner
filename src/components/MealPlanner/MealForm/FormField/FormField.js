@@ -2,12 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 // import { useSelector, useDispatch } from 'react-redux'
 // import { getCurrenciesList } from '../../modules/exchangerates/exchangerates.actions'
-import options from '../../data/currencyOptions'
 import Error from '../Error'
 import StyledFormField from './FormField.styled'
+import StyledLink from '../../../../styled/components/Link.styled'
 
 const FormField = (props) => {
-  const { name, label, type, step, required, value, onChange, errors } = props
+  const { name, label, type, placeholder, options, required, value, onChange, errors } = props
+
+  const activeClass = 'active'
 
   const showErrors = () => {
     return (
@@ -22,6 +24,25 @@ const FormField = (props) => {
             ''
         )
       })
+    )
+  }
+
+  const renderFormField = () => {
+    return (
+      <StyledFormField>
+        <label htmlFor={name}>
+          {label}
+        </label>
+        <input
+          name={name}
+          type={type}
+          value={value}
+          required={required}
+          placeholder={placeholder}
+          onChange={onChange}
+        />
+        {showErrors()}
+      </StyledFormField>
     )
   }
 
@@ -40,7 +61,6 @@ const FormField = (props) => {
           id={name}
           value={value}
           required={required}
-          step={step}
           onChange={onChange}
         >
           {options.map((option) => {
@@ -57,22 +77,29 @@ const FormField = (props) => {
         {showErrors()}
       </StyledFormField>
     )
+  } else if (name === 'name') {
+    return (
+      <>
+        {renderFormField()}
+        <StyledLink
+          activeClassName={activeClass}
+          to={'/recipes/1'}
+        >
+          <button>Select from My Recipes</button>
+        </StyledLink>
+        <StyledLink
+          activeClassName={activeClass}
+          to={'/find-recipe/1'}
+        >
+          <button>Get New Recipe</button>
+        </StyledLink>
+      </>
+    )
   } else {
     return (
-      <StyledFormField>
-        <label htmlFor={name}>
-          {label}
-        </label>
-        <input
-          name={name}
-          type={type}
-          value={value}
-          required={required}
-          step={step}
-          onChange={onChange}
-        />
-        {showErrors()}
-      </StyledFormField>
+      <>
+        {renderFormField()}
+      </>
     )
   }
 }
@@ -81,7 +108,8 @@ FormField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   type: PropTypes.string,
-  step: PropTypes.string,
+  placeholder: PropTypes.string,
+  options: PropTypes.array,
   required: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.string,

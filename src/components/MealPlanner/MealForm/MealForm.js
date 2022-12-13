@@ -1,10 +1,16 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import StyledLink from '../../../styled/components/Link.styled'
+import { useSelector, useDispatch } from 'react-redux'
+// import StyledLink from '../../../styled/components/Link.styled'
 import Modal from '../../General/Modal'
+import FormField from './FormField'
 // import SpoonacularAPI from '../../../modules/spoonacular/spoonacular.api.js'
 // import RecipesList from '../../RecipesList'
+import validateForm from '../../../helpers/validateForm'
+import { setFieldValue, clearFields } from '../../../modules/form/form.actions'
 import { dateToInputFormat } from '../../../helpers/calendarHelpers'
+// import { getCurrentDate } from '../../../helpers/helperFunctions'
+import formFields from '../../../data/formFields'
 
 // const RecipesAPI = new SpoonacularAPI()
 
@@ -17,87 +23,78 @@ const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingM
   if (!withMeal && !!preselectedDate) {
     newMeal.date = dateToInputFormat(preselectedDate)
   }
-  const [meal, setMeal] = React.useState(newMeal)
+
+  const values = useSelector((state) => state.form)
+
+  const dispatch = useDispatch()
+
+  // const [meal, setMeal] = React.useState(newMeal)
+  const [errors, setErrors] = React.useState([])
+
   // const [recipesData, setRecipesData] = React.useState(null)
   // const [phrase, setPhrase] = React.useState('')
-  const activeClass = 'active'
+  // const activeClass = 'active'
 
-  /*
-  const getRecipesData = () => {
-    RecipesAPI.getRecipes(phrase)
-      .then(data => setRecipesData(data))
+  const handleInputChange = (e, name, type) => {
+    // const currentDate = getCurrentDate()
+    // if (e.target.name === 'dateOfPurchase' && e.target.value < currentDate) {
+    //  dispatch(getPriceByDate(e.target.value, values.currency))
+    // }
+
+    dispatch(setFieldValue(name, e.target.value))
   }
 
-  const handleChange = (e) => {
-    setPhrase(e.target.value)
-  } */
+  const renderFormFields = () => {
+    return formFields.map((field) => {
+      const { name, label, type, placeholder, options, required } = field
+      return (
+        <FormField
+          key={name}
+          name={name}
+          label={label}
+          type={type}
+          value={values[name]}
+          placeholder={placeholder || null}
+          options={options}
+          required={required}
+          onChange={(e) => handleInputChange(e, name, type)}
+          errors = {errors}
+        />
+      )
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const err = validateForm(values)
+    setErrors(err)
+    if (err.length === 0) {
+      // dispatch(addRow(valuesForTableRow))
+      // dispatch(pushRowsToLS())
+      dispatch(clearFields())
+    }
+  }
 
   return (
     <Modal
       onClose={() => setShowingMealForm({ visible: false })}
       title={`${withMeal ? 'Edit meal' : 'Add a new meal'}`}
     >
-      <div className={'form'}>
-        <label>Type
-          <select
-            value={meal.type ? meal.type.toLowerCase() : 'breakfast'}
-            onChange={(e) => setMeal({ ...meal, type: e.target.value })}
-          >
-            <option value={'breakfast'}>Breakfast</option>
-            <option value={'elevenses'}>Elevenses</option>
-            <option value={'lunch'}>Lunch</option>
-            <option value={'snacks'}>Snacks</option>
-            <option value={'dinner'}>Dinner</option>
-          </select>
-        </label>
-
-        <label>Name
-          <input
-            type={'text'}
-            placeholder={'e.g. pasta'}
-            defaultValue={meal.name}
-            onChange={(e) => setMeal({ ...meal, name: e.target.value })}
-          />
-          <StyledLink
-            activeClassName={activeClass}
-            to={'/recipes/1'}
-          >
-            <button>Select from My Recipes</button>
-          </StyledLink>
-          <StyledLink
-            activeClassName={activeClass}
-            to={'/find-recipe/1'}
-          >
-            <button>Get New Recipe</button>
-          </StyledLink>
-        </label>
-
-        <label>Date
-          <input
-            type={'date'}
-            defaultValue={meal.date || dateToInputFormat(preselectedDate)}
-            onChange={(e) => setMeal({ ...meal, date: e.target.value })}
-          />
-        </label>
-
-        <label>Note
-          <input
-            type={'text'}
-            placeholder={''}
-            defaultValue={meal.note}
-            onChange={(e) => setMeal({ ...meal, note: e.target.value })}
-          />
-        </label>
+      <form
+        className={'form'}
+        onSubmit={handleSubmit}
+      >
+        {renderFormFields()}
 
         {withMeal
           ? (
             <>
-              <button onClick={() => editMeal(meal)}>Edit meal</button>
+              <button onClick={() => editMeal(values)}>Edit meal</button>
               <button
                 className={'close'}
                 onClick={() => {
                   setShowingMealForm({ visible: false })
-                  setViewingMeal(meal)
+                  setViewingMeal(values)
                 }}
               >
                 Cancel (go back to meal view)
@@ -106,7 +103,12 @@ const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingM
             )
           : (
             <>
-              <button onClick={() => addMeal(meal)}>Add meal</button>
+              <button
+                onClick={() => addMeal(values)}
+                type={'submit'}
+              >
+                Add meal
+              </button>
               <button
                 className={'close'}
                 onClick={() => setShowingMealForm({ visible: false })}
@@ -115,7 +117,7 @@ const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingM
               </button>
             </>
             )}
-      </div>
+      </form>
     </Modal>
   )
 }

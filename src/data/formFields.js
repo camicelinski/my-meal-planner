@@ -33,6 +33,13 @@ const formFields = [
     required: true
   },
   {
+    name: 'servings',
+    label: 'Servings',
+    type: 'number',
+    err: 'servings must be greater than zero',
+    required: true
+  },
+  {
     name: 'note',
     label: 'Note',
     type: 'text',
