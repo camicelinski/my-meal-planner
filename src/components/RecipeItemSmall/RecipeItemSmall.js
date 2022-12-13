@@ -13,7 +13,6 @@ const RecipeItemSmall = ({ recipe }) => {
 
   const getRecipeData = (id) => {
     dispatch(getRecipeInfo(id))
-    console.log(recipe)
   }
 
   return (
@@ -34,8 +33,7 @@ const RecipeItemSmall = ({ recipe }) => {
           <li>Preparation time: {recipe.readyInMinutes} minutes</li>
           <li>Number of servings: {recipe.servings}</li>
         </ul>
-        <p>Ingredients: </p>
-        <p>Instructions: {recipe.instructions}</p>
+        <p>{recipe.summary}</p>
       </StyledLink>
     </StyledRecipeItemSmall>
   )

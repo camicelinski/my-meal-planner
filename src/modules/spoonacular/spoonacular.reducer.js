@@ -2,7 +2,7 @@ import types from './spoonacular.types'
 
 const initState = {
   recipes: [],
-  recipe: {}
+  recipe: null
 }
 
 const reducer = (state = initState, action) => {

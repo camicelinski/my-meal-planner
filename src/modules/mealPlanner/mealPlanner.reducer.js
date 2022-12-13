@@ -13,16 +13,16 @@ const reducer = (state = initState, action) => {
       // const { meals } = action.payload
       return {
         ...state,
-        meals: action.payload.meals
+        [action.payload.type]: action.payload.meals
       }
 
     case types.SAVE_MEAL:
-      // const { meal } = action.payload
+      const { meal, type } = action.payload
       return {
         ...state,
-        meals: [
-          ...state.meals,
-          action.payload.meal
+        [type]: [
+          ...state.type,
+          meal
         ]
       }
 

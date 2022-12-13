@@ -22,9 +22,13 @@ export const getRecipesList = (phrase) => (dispatch, getState) => {
     .then((resp) => dispatch(setRecipes(resp.results)))
 }
 
-export const getRecipeInfo = (id) => (dispatch, getState) => {
-  RecipesAPI.getRecipe(id)
-    .then((resp) => dispatch(setRecipeInfo(resp)))
+export const getRecipeInfo = (id) => async (dispatch, getState) => {
+  const response = await RecipesAPI.getRecipe(id)
+  const infobefore = getState()
+  console.log(infobefore)
+  dispatch(setRecipeInfo(response))
+  const recipeInfo = getState()
+  console.log(recipeInfo)
 }
 
 /*

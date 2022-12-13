@@ -1,27 +1,27 @@
-export function loadMealsAction (meals) {
+export function loadMealsAction (meals, type) {
   return {
     type: 'loadMeals',
-    payload: { meals }
+    payload: { meals, type }
   }
 }
 
-export function saveMealAction (meal) {
+export function saveMealAction (meal, type) {
   return {
     type: 'saveMeal',
-    payload: { meal }
+    payload: { meal, type }
   }
 }
 
-export function removeMealAction (id) {
+export function removeMealAction (id, type) {
   return {
     type: 'removeMeal',
-    payload: { id }
+    payload: { id, type }
   }
 }
 
-export function updateMealAction (id, meal) {
+export function updateMealAction (id, meal, type) {
   return {
     type: 'updateMeal',
-    payload: { id, meal }
+    payload: { id, meal, type }
   }
 }
