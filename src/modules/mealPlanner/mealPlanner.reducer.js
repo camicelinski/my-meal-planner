@@ -13,16 +13,16 @@ const reducer = (state = initState, action) => {
       // const { meals } = action.payload
       return {
         ...state,
-        [action.payload.type]: action.payload.meals
+        meals: action.payload.meals
       }
 
     case types.SAVE_MEAL:
-      const { meal, type } = action.payload
+      // const { meal } = action.payload
       return {
         ...state,
-        [type]: [
-          ...state.type,
-          meal
+        meals: [
+          ...state.meals,
+          action.payload.meal
         ]
       }
 
@@ -48,6 +48,23 @@ const reducer = (state = initState, action) => {
             return meal
           }
         } */
+      }
+
+    case types.LOAD_RECIPES:
+      // const { recipes } = action.payload
+      return {
+        ...state,
+        recipes: action.payload.recipes
+      }
+
+    case types.SAVE_RECIPE:
+      // const { recipe } = action.payload
+      return {
+        ...state,
+        recipes: [
+          ...state.recipes,
+          action.payload.recipe
+        ]
       }
 
     default:

@@ -7,14 +7,14 @@ export class MealPlannerAPI {
     return this._fetch(additionalPath)
   }
 
-  add (data) {
+  add (additionalPath, data) {
     const options = {
       method: 'POST',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json' }
     }
 
-    return this._fetch(options)
+    return this._fetch(additionalPath, options)
   }
 
   remove (id) {

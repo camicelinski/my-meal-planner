@@ -1,15 +1,19 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 // import parse from 'html-react-parser'
 
-import { saveMealAction } from '../../modules/mealPlanner/mealPlanner.actions'
+// import { saveRecipeAction } from '../../modules/mealPlanner/mealPlanner.actions'
 import StyledRecipeItem from './RecipeItem.styled'
+import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api'
+import { getMyRecipes } from '../../modules/mealPlanner/mealPlanner.actions'
 
 const RecipeItem = () => {
   const { recipe } = useSelector((state) => state.spoonacular)
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   console.log(recipe)
+
+  const mealPlannerAPI = new MealPlannerAPI()
 
   React.useEffect(() => {
     // You could retrieve fresh events data here
@@ -27,7 +31,9 @@ const RecipeItem = () => {
   console.log(recipe)
 
   const addRecipeToMyRecipes = () => {
-    dispatch(saveMealAction(recipe, 'recipes'))
+    // dispatch(saveRecipeAction(recipe))
+    mealPlannerAPI.add('/recipes', recipe)
+    getMyRecipes()
   }
 
   return (
