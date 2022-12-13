@@ -58,17 +58,15 @@ const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingM
             defaultValue={meal.name}
             onChange={(e) => setMeal({ ...meal, name: e.target.value })}
           />
-          <button>
-            <StyledLink
-              activeClassName={activeClass}
-              to={'/recipes/1'}
-            >
-              Select from My Recipes
-            </StyledLink>
-          </button>
           <StyledLink
             activeClassName={activeClass}
             to={'/recipes/1'}
+          >
+            <button>Select from My Recipes</button>
+          </StyledLink>
+          <StyledLink
+            activeClassName={activeClass}
+            to={'/find-recipe/1'}
           >
             <button>Get New Recipe</button>
           </StyledLink>

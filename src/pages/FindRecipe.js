@@ -8,31 +8,18 @@ import RecipeItemSmall from '../components/RecipeItemSmall'
 // import { sortByDate } from '../helpers/sortByDate'
 // import SpoonacularAPI from '../modules/spoonacular/spoonacular.api'
 import { getRecipesList } from '../modules/spoonacular/spoonacular.actions'
-import MealPlannerAPI from '../modules/mealPlanner/mealPlanner.api'
-import { loadRecipesAction } from '../modules/mealPlanner/mealPlanner.actions'
 
-const Recipes = () => {
+const FindRecipe = () => {
   // const { uid } = useParams()
   // const [documents] = useAllPrismicDocumentsByType('blog_post')
-  // const { recipes } = useSelector((state) => state.spoonacular)
+  const { recipes } = useSelector((state) => state.spoonacular)
   const dispatch = useDispatch()
 
   // const RecipesAPI = new SpoonacularAPI()
 
-  const mealPlannerAPI = new MealPlannerAPI()
-
-  // const [data, setData] = React.useState([])
-  React.useEffect(() => {
-    mealPlannerAPI.load('/recipes').then(data => dispatch(loadRecipesAction(data)))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const { recipes } = useSelector((state) => state.mealPlanner)
-  console.log(recipes)
-
   const [phrase, setPhrase] = React.useState('')
 
-  const pageUrl = '/recipes'
+  const pageUrl = '/find-recipe'
   // const activeClass = 'active'
 
   const getRecipesData = () => {
@@ -75,7 +62,7 @@ const Recipes = () => {
   )
 }
 
-export default Recipes
+export default FindRecipe
 
 /*
 const CategoryPosts = () => {

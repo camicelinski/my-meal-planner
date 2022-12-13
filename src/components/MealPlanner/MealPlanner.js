@@ -1,20 +1,24 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import StyledMealPlanner from './MealPlanner.styled'
 import Calendar from './Calendar/Calendar'
 import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api.js'
+import { loadMealsAction } from '../../modules/mealPlanner/mealPlanner.actions'
 
 // const SAMPLE_META = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 
 const MealPlanner = () => {
   const mealPlannerAPI = new MealPlannerAPI()
+  const dispatch = useDispatch()
 
-  const [data, setData] = React.useState([])
+  // const [data, setData] = React.useState([])
   React.useEffect(() => {
-    mealPlannerAPI.load('/meals').then(data => setData(data))
+    mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log(data)
+  const { meals } = useSelector((state) => state.mealPlanner)
+  console.log(meals)
 
   // const data = mealPlannerAPI.load()
   // .then((data) => setPreloadedMeals(data.meals))
@@ -25,7 +29,7 @@ const MealPlanner = () => {
       <Calendar
         month={12}
         year={2022}
-        preloadedMeals={data}
+        preloadedMeals={meals}
         /* preloadedMeals={[
           {
             id: 1,
