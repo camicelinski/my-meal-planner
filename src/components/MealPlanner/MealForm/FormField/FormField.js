@@ -113,7 +113,8 @@ FormField.propTypes = {
   required: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number
+    PropTypes.number,
+    PropTypes.array
   ]),
   onChange: PropTypes.func,
   errors: PropTypes.arrayOf(PropTypes.object)

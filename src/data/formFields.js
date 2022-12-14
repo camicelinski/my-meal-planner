@@ -4,7 +4,7 @@ const formFields = [
     label: 'Date',
     type: 'date',
     regExp: /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
-    err: 'select a date today or in the past',
+    err: 'select a date today or in the future',
     required: true
   },
   {
@@ -29,7 +29,7 @@ const formFields = [
     placeholder: 'e.g. pasta',
     type: 'text',
     regExp: /[A-Za-z]+/,
-    err: 'price must be greater than zero',
+    err: 'add a valid recipe',
     required: true
   },
   {

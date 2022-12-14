@@ -8,7 +8,9 @@ import FormField from './FormField'
 // import RecipesList from '../../RecipesList'
 import validateForm from '../../../helpers/validateForm'
 import { setFieldValue, clearFields } from '../../../modules/form/form.actions'
+import { loadMealsAction } from '../../../modules/mealPlanner/mealPlanner.actions'
 import { dateToInputFormat } from '../../../helpers/calendarHelpers'
+import MealPlannerAPI from '../../../modules/mealPlanner/mealPlanner.api'
 // import { getCurrentDate } from '../../../helpers/helperFunctions'
 import formFields from '../../../data/formFields'
 
@@ -18,14 +20,14 @@ import formFields from '../../../data/formFields'
 // In a real implementation, we'd have some frontend
 // validation and also the equivalent in our
 // backend service...
-const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingMeal, preselectedDate }) => {
+const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMeal, setViewingMeal, preselectedDate }) => {
   const newMeal = withMeal || {}
   if (!withMeal && !!preselectedDate) {
     newMeal.date = dateToInputFormat(preselectedDate)
   }
 
   const values = useSelector((state) => state.form)
-
+  const mealPlannerAPI = new MealPlannerAPI()
   const dispatch = useDispatch()
 
   // const [meal, setMeal] = React.useState(newMeal)
@@ -71,7 +73,10 @@ const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingM
     if (err.length === 0) {
       // dispatch(addRow(valuesForTableRow))
       // dispatch(pushRowsToLS())
+      mealPlannerAPI.add('/meals', values)
+      mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
       dispatch(clearFields())
+      setShowingMealForm({ visible: false })
     }
   }
 
@@ -82,7 +87,8 @@ const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingM
     >
       <form
         className={'form'}
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
+        noValidate
       >
         {renderFormFields()}
 
@@ -104,7 +110,7 @@ const MealForm = ({ setShowingMealForm, addMeal, editMeal, withMeal, setViewingM
           : (
             <>
               <button
-                onClick={() => addMeal(values)}
+                onClick={handleSubmit}
                 type={'submit'}
               >
                 Add meal

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import StyledLink from '../../styled/components/Link.styled'
 import StyledRecipeItemSmall from './RecipeItemSmall.styled'
@@ -9,10 +9,15 @@ import { getRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
 const RecipeItemSmall = ({ recipe }) => {
   const titleToUrl = recipe.title.trim().replace(/\s+/g, '-').toLowerCase()
   const activeClass = 'active'
+
+  const { recipes } = useSelector((state) => state.mealPlanner)
   const dispatch = useDispatch()
 
   const getRecipeData = (id) => {
-    dispatch(getRecipeInfo(id))
+    const recipeInMyRecipes = recipes.find(recipe => recipe.id.toString() === id.toString())
+    if (recipeInMyRecipes === undefined) {
+      dispatch(getRecipeInfo(id))
+    }
   }
 
   return (

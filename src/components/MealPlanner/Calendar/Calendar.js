@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
+// import { useDispatch } from 'react-redux'
 import Navigation from './Navigation'
 import Loader from '../../General/Loader'
 import DayLabels from './DayLabels'
@@ -7,7 +8,10 @@ import Grid from './Grid'
 import MealForm from '../MealForm'
 import Meal from '../Meal/Meal'
 import Feedback from '../../General/Feedback'
+// import validateForm from '../../../helpers/validateForm'
 import { parseEvents } from '../../../helpers/calendarHelpers'
+// import MealPlannerAPI from '../../../modules/mealPlanner/mealPlanner.api'
+// import { clearFields } from '../../../modules/form/form.actions'
 // Sample events calendar build, explained and detailed over at
 // https://justacoding.blog/react-calendar-component-example-with-events/
 
@@ -21,7 +25,9 @@ const MOCK_LOADING_TIME = 1000
 const Calendar = ({ month, year, preloadedMeals = [] }) => {
   const selectedDate = new Date(year, month - 1)
   const parsedMeals = parseEvents(preloadedMeals)
-  console.log(parsedMeals)
+
+  // const mealPlannerAPI = new MealPlannerAPI()
+  // const dispatch = useDispatch()
 
   const [date, setDate] = useState(selectedDate)
   const [viewingMeal, setViewingMeal] = useState(false)
@@ -29,7 +35,7 @@ const Calendar = ({ month, year, preloadedMeals = [] }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [feedback, setFeedback] = useState()
   const [meals, setMeals] = useState(parsedMeals)
-  console.log(meals)
+  // const [errors, setErrors] = React.useState([])
 
   useEffect(() => {
   // You could retrieve fresh events data here
@@ -44,17 +50,19 @@ const Calendar = ({ month, year, preloadedMeals = [] }) => {
     // any new network requests
     console.log("Date has changed... Let's load some fresh data")
   }, [date])
-
+  /*
   const addMeal = (meal) => {
     setIsLoading(true)
     setShowingMealForm({ visible: false })
-
-    // These timeouts are to imitate HTTP requests
-    // So in a real impementation, you'd interact
-    // with your backend service here and handle
-    // the result accordingly...
-    // Likewise for `editEvent` and `deleteEvent`
-    // below
+  }
+  */
+  // These timeouts are to imitate HTTP requests
+  // So in a real impementation, you'd interact
+  // with your backend service here and handle
+  // the result accordingly...
+  // Likewise for `editEvent` and `deleteEvent`
+  // below
+  /*
     setTimeout(() => {
       const parsedMeals = parseEvents([meal])
 
@@ -66,7 +74,9 @@ const Calendar = ({ month, year, preloadedMeals = [] }) => {
       setIsLoading(false)
       showFeedback({ message: 'Meal created successfully', type: 'success' })
     }, MOCK_LOADING_TIME)
+
   }
+  */
 
   const editMeal = (meal) => {
     setIsLoading(true)
@@ -146,9 +156,10 @@ const Calendar = ({ month, year, preloadedMeals = [] }) => {
           withMeal={showingMealForm.withMeal}
           preselectedDate={showingMealForm.preselectedDate}
           setShowingMealForm={setShowingMealForm}
-          addMeal={addMeal}
+          // addMeal={addMeal}
           editMeal={editMeal}
           setViewingMeal={setViewingMeal}
+          // errors={errors}
         />
       }
     </div>

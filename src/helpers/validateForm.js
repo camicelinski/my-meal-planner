@@ -33,7 +33,7 @@ const validateForm = (values) => {
       }
     }
 
-    if (type === 'date' && value > currentDate) {
+    if (type === 'date' && value < currentDate) {
       errors.push({
         text: err,
         field: field
