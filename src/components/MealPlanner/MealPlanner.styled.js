@@ -5,8 +5,9 @@ const StyledMealPlanner = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  font-family: sans-serif;
-  border: 4px solid #e6e6e6;
+  // font-family: sans-serif;
+  border: 2px solid var(--border-calendar);
+  border-radius: var(--radius-primary);
   position: relative;
 }
 
@@ -15,17 +16,35 @@ const StyledMealPlanner = styled.div`
 }
 
 .cell {
-  background: #fffeee;
+  // background: #fffeee;
   width: 14.2857%;
   height: 90px;
   font-size: 0.7em;
-  box-shadow: 0 0px 1px #393939;
+  // box-shadow: 0 0px 1px #393939;
+  border-right: 1px solid var(--bg-calendar);
+}
+
+.cell:last-child {
+    border-right: none;
 }
 
 .cell .date {
-  margin: 4px;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
+.date div {
+  // padding: 5px;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.date .day,
+.date .addEventOnDay {
+  border-radius: 50%;
+  padding: 5px;
+}
 
 .current {
   background: #d3edd3;
@@ -43,14 +62,15 @@ const StyledMealPlanner = styled.div`
   color: #bfbfbf;
 }
 
+// button
 .addEventOnDay {
-  display: inline-block;
-  color: #4f4f4f;
+  // display: inline-block;
+  color: var(--text-primary);
   text-decoration: none;
-  margin-left: 4px;
-  background: #e1e1e1;
-  padding: 0 6px;
-  border-radius: 3px;
+  // margin-left: 4px;
+  background: var(--bg-calendar);
+  // padding: 0 6px;
+  // border-radius: 3px;
 }
 
 .miniEvent {
@@ -66,74 +86,35 @@ const StyledMealPlanner = styled.div`
 }
 
 .miniEvent.breakfast {
-  background: #2980B9;
+  background: var(--meal-breakfast);
 }
 
 .miniEvent.elevenses {
-  background: #27AE60;
+  background: var(--meal-elevenses);
 }
 
 .miniEvent.lunch {
-  background: #C0392B;
+  background: var(--meal-lunch);
 }
 
 .miniEvent.snacks {
-  background: #D35400;
+  background: var(--meal-snacks);
 }
 
 .miniEvent.dinner {
-  background: #F39C12;
+  background: var(--meal-dinner);
 }
 
-.navigation {
-  width: 100%;
-  padding: 10px 8px 14px 8px;
-  border-bottom: 3px solid #b3b3b3;
-}
-
-.navigation div {
-    display: inline-block;
-    width: 33.33%;
-}
-
-.navigation .monthAndYear {
-  text-align: center;
-  font-weight: bold;
-}
-
-.navigation .monthAndYear a {
-  text-decoration: none;
-  display: inline-block;
-  padding: 0 10px;
-  background: #27bc27;
-  border-radius: 5px;
-  color: white;
-  margin-left: 10px;
-  text-shadow: 0 0px 2px #727272;
-}
-
-.navigation .back, 
-.navigation .forward {
-  cursor: pointer;
-  font-size: 0.7em;
-  color: grey;
-}
-
-.navigation .back {
-  text-align: left;
-}
-
-.navigation .forward {
-  text-align: right;
-}
-
-.dayLabel {
-  font-weight: bold;
+.dayLabel.cell {
+  // font-weight: bold;
+  text-transform: uppercase;
   text-align: center;
   height: auto;
-  padding: 10px 0;
-  background: #e9e9e9;
-  border-bottom: 3px solid #cacaca;
+  padding: 5px 0;
+  // background: #e9e9e9;
+  border: none;
+  border-bottom: 1px solid var(--bg-calendar);
+  // background: var(--bg-calendar);
 }
 
 .addEvent {
@@ -172,7 +153,7 @@ button {
   width: 100%;
   background: #3fb73f;
   border: 0;
-  border-bottom: 3px solid green;
+  // border-bottom: 3px solid green;
   color: white;
   padding: 10px;
   cursor: pointer;

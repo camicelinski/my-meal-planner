@@ -4,13 +4,18 @@ import { HashRouter as Router } from 'react-router-dom'
 import AnimatedSwitch from '../AnimatedSwitch.js'
 // import MonthlyPlanner from './components/Calendar/MonthlyPlanner'
 // const RecipesAPI = new SpoonacularAPI()
+import GlobalStyle from '../../styled/GlobalStyle'
+import ResetStyle from '../../styled/ResetStyle'
+import StyledApp from './App.styled.js'
 
 export const App = () => {
   return (
     <Router>
-      <div className={'App'}>
+      <ResetStyle />
+      <GlobalStyle />
+      <StyledApp className={'App'}>
         <AnimatedSwitch />
-      </div>
+      </StyledApp>
     </Router>
   )
 }
