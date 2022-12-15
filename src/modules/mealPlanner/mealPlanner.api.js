@@ -17,9 +17,9 @@ export class MealPlannerAPI {
     return this._fetch(additionalPath, options)
   }
 
-  remove (id) {
+  remove (additionalPath, id) {
     const options = { method: 'DELETE' }
-    return this._fetch(options, `/${id}`)
+    return this._fetch(`${additionalPath}/${id}`, options)
   }
 
   update (id, data) {

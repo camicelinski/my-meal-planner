@@ -2,8 +2,10 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import StyledMealPlanner from './MealPlanner.styled'
 import Calendar from './Calendar/Calendar'
+import DailyMealPlan from './Calendar/DailyMealPlan'
 import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api.js'
 import { loadMealsAction } from '../../modules/mealPlanner/mealPlanner.actions'
+import { toStartOfDay } from '../../helpers/calendarHelpers'
 
 // const SAMPLE_META = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 
@@ -20,6 +22,7 @@ const MealPlanner = () => {
   const { meals } = useSelector((state) => state.mealPlanner)
   console.log(meals)
 
+  const currentDate = toStartOfDay(new Date())
   // const data = mealPlannerAPI.load()
   // .then((data) => setPreloadedMeals(data.meals))
   // console.log(preloadedMeals)
@@ -27,8 +30,8 @@ const MealPlanner = () => {
   return (
     <StyledMealPlanner>
       <Calendar
-        month={12}
-        year={2022}
+        month={currentDate.getMonth() + 1}
+        year={currentDate.getFullYear()}
         preloadedMeals={meals}
         /* preloadedMeals={[
           {
@@ -60,6 +63,7 @@ const MealPlanner = () => {
           }
         ]} */
       />
+      <DailyMealPlan />
     </StyledMealPlanner>
   )
 }

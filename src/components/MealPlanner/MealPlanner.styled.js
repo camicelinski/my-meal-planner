@@ -40,18 +40,39 @@ const StyledMealPlanner = styled.div`
   height: 1.5rem;
 }
 
+.date div:first-child {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .date .day,
 .date .addEventOnDay {
   border-radius: 50%;
   padding: 5px;
 }
 
-.current {
-  background: #d3edd3;
+.date .day {
+  font-size: 0.9rem;
 }
 
-.current .date {
+.current {
+  // background: #d3edd3;
+}
+
+.current .date div:first-child {
   font-weight: bold;
+  color: var(--color-theme);
+  // background-color: var(--color-theme);
+}
+
+.cell:hover .date div:first-child {
+  background-color: var(--color-theme-hover);
+}
+
+.activedate {
+  background-color: var(--bg-cell);
 }
 
 .otherMonth {
@@ -71,6 +92,11 @@ const StyledMealPlanner = styled.div`
   background: var(--bg-calendar);
   // padding: 0 6px;
   // border-radius: 3px;
+  transition: var(--transition-style);
+}
+
+.addEventOnDay:hover {
+  background: var(--border-calendar);
 }
 
 .miniEvent {
@@ -151,7 +177,7 @@ const StyledMealPlanner = styled.div`
 
 button {
   width: 100%;
-  background: #3fb73f;
+  // background: #3fb73f;
   border: 0;
   // border-bottom: 3px solid green;
   color: white;

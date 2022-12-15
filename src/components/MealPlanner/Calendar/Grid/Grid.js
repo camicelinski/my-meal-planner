@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-
+import { useSelector, useDispatch } from 'react-redux'
 import MealSmallIcon from '../MealSmallIcon'
 import {
   toStartOfDay,
   findEventsForDate
 } from '../../../../helpers/calendarHelpers'
+import { setActiveDate } from '../../../../modules/mealPlanner/mealPlanner.actions'
 
 // The grid of days, renders a month's worth of days and
 // also populates the events on the relevant dates
@@ -13,8 +14,12 @@ const Grid = ({ date, meals, setViewingMeal, setShowingMealForm, actualDate }) =
   // const ROWS_COUNT = 6
   const ROWS_COUNT = 1
   const currentDate = toStartOfDay(new Date())
+  // const currentDate = new Date()
 
-  const [activeDate, setActiveDate] = React.useState(currentDate)
+  const { activeDate } = useSelector((state) => state.mealPlanner)
+  const dispatch = useDispatch()
+
+  // const [activeDate, setActiveDate] = React.useState(currentDate)
 
   React.useEffect(() => {
   }, [activeDate])
@@ -41,7 +46,8 @@ const Grid = ({ date, meals, setViewingMeal, setShowingMealForm, actualDate }) =
   }
 
   const handleClick = (date) => {
-    setActiveDate(date)
+    // setActiveDate(date)
+    dispatch(setActiveDate(date))
     console.log(date)
     console.log(currentDate)
   }

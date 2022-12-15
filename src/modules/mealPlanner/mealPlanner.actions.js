@@ -45,11 +45,27 @@ export function saveRecipeAction (recipe) {
   }
 }
 
+export function setActiveDate (date) {
+  return {
+    type: types.SET_ACTIVE_DATE,
+    payload: { date }
+  }
+}
+
 export const getMyRecipes = () => async (dispatch, getState) => {
   const myRecipes = await mealPlannerAPI.load('/recipes')
   const infobefore = getState()
   console.log(infobefore)
   dispatch(loadRecipesAction(myRecipes))
+  const recipeInfo = getState()
+  console.log(recipeInfo)
+}
+
+export const getMyMeals = () => async (dispatch, getState) => {
+  const myMeals = await mealPlannerAPI.load('/meals')
+  const infobefore = getState()
+  console.log(infobefore)
+  dispatch(loadMealsAction(myMeals))
   const recipeInfo = getState()
   console.log(recipeInfo)
 }

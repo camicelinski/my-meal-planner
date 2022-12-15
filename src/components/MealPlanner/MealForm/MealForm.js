@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -8,7 +9,7 @@ import FormField from './FormField'
 // import RecipesList from '../../RecipesList'
 import validateForm from '../../../helpers/validateForm'
 import { setFieldValue, clearFields } from '../../../modules/form/form.actions'
-import { loadMealsAction } from '../../../modules/mealPlanner/mealPlanner.actions'
+import { getMyMeals, loadMealsAction } from '../../../modules/mealPlanner/mealPlanner.actions'
 import { dateToInputFormat } from '../../../helpers/calendarHelpers'
 import MealPlannerAPI from '../../../modules/mealPlanner/mealPlanner.api'
 // import { getCurrentDate } from '../../../helpers/helperFunctions'
@@ -36,6 +37,10 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
   // const [recipesData, setRecipesData] = React.useState(null)
   // const [phrase, setPhrase] = React.useState('')
   // const activeClass = 'active'
+
+  React.useEffect(() => {
+    mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
+  }, [])
 
   const handleInputChange = (e, name, type) => {
     // const currentDate = getCurrentDate()
@@ -74,7 +79,7 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
       // dispatch(addRow(valuesForTableRow))
       // dispatch(pushRowsToLS())
       mealPlannerAPI.add('/meals', values)
-      mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
+      dispatch(getMyMeals())
       dispatch(clearFields())
       setShowingMealForm({ visible: false })
     }

@@ -1,8 +1,12 @@
 /* eslint-disable no-case-declarations */
 import types from './mealPlanner.types'
+import { toStartOfDay } from '../../helpers/calendarHelpers'
+
+const currentDate = toStartOfDay(new Date())
 
 const initState = {
   meals: [],
+  activeDate: currentDate,
   recipes: [],
   groceryList: []
 }
@@ -65,6 +69,12 @@ const reducer = (state = initState, action) => {
           ...state.recipes,
           action.payload.recipe
         ]
+      }
+
+    case types.SET_ACTIVE_DATE:
+      return {
+        ...state,
+        activeDate: action.payload.date
       }
 
     default:

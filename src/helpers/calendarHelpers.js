@@ -1,3 +1,4 @@
+import { sortMeals } from './helperFunctions'
 // Utilities/helpers
 export const MONTHS = [
   'January',
@@ -59,8 +60,8 @@ export const parseEvents = (events) => {
 export const findEventsForDate = (events, date) => {
   // console.log(date)
   // const dateTime = date.getTime()
-
-  return events.filter(event => {
+  const sortedEvents = sortMeals(events)
+  return sortedEvents.filter(event => {
     // console.log(toStartOfDay(event.date))
     const eventDate = toStartOfDay(event.date)
     // const eventFromTime = toStartOfDay(event.from).getTime()
