@@ -61,7 +61,7 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
           name={name}
           label={label}
           type={type}
-          value={name === 'date' ? preselectedDate : values[name]}
+          value={values[name]}
           placeholder={placeholder || null}
           options={options}
           required={required}

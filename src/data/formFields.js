@@ -5,7 +5,8 @@ const formFields = [
     type: 'date',
     regExp: /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
     err: 'select a date today or in the future',
-    required: true
+    required: true,
+    defaultValue: ''
   },
   {
     name: 'type',
@@ -21,23 +22,26 @@ const formFields = [
     // regExp: /^[A-Z]$/,
     regExp: /[A-Za-z]+/,
     err: 'select a valid meal type',
-    required: true
+    required: true,
+    defaultValue: 'lunch'
   },
   {
     name: 'name',
     label: 'Name',
-    placeholder: 'e.g. pasta',
+    placeholder: 'e.g. Eggs Benedict',
     type: 'text',
     regExp: /[A-Za-z]+/,
     err: 'add a valid recipe',
-    required: true
+    required: true,
+    defaultValue: ''
   },
   {
     name: 'servings',
     label: 'Servings',
     type: 'number',
     err: 'servings must be greater than zero',
-    required: true
+    required: true,
+    defaultValue: '2'
   },
   {
     name: 'note',

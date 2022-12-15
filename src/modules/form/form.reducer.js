@@ -4,7 +4,7 @@ import formTypes from './form.types'
 function setInitState () {
   const objState = {}
   formFields.forEach((field) => {
-    objState[field.name] = ''
+    objState[field.name] = field.defaultValue
   })
   return objState
 }

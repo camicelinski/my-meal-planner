@@ -169,7 +169,7 @@ const StyledMealPlanner = styled.div`
   color: var(--text-secondary);
   font-size: 0.8rem;
   width: calc(100% - 16px);
-  padding: 5px;
+  padding: 5px 8px;
   margin: 5px 0;
   border: 1px solid var(--border-calendar);
   border-radius: 4px;

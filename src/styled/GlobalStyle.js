@@ -35,6 +35,16 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  a {
+    color: var(--color-theme);
+    text-decoration: none;
+    transition: var(--transition-style);
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
   ul {
     list-style: none;
   }

@@ -113,6 +113,10 @@ FormField.propTypes = {
   placeholder: PropTypes.string,
   options: PropTypes.array,
   required: PropTypes.bool,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

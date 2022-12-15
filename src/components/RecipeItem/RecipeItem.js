@@ -71,6 +71,17 @@ const RecipeItem = () => {
     <StyledRecipeItem>
       {recipeData && (
         <div>
+          <button
+            onClick={addRecipeToMeal}
+          >
+            Add to Meal
+          </button>
+          <button
+            onClick={addRecipeToMyRecipes}
+            className={recipeInMyRecipes ? 'hidden' : ''}
+          >
+            Add to My Recipes
+          </button>
           <h2>
             {recipeData.title}
           </h2>
@@ -112,17 +123,6 @@ const RecipeItem = () => {
               )}
             </ul>
           </div>
-          <button
-            onClick={addRecipeToMeal}
-          >
-            Add to Meal
-          </button>
-          <button
-            onClick={addRecipeToMyRecipes}
-            className={recipeInMyRecipes ? 'hidden' : ''}
-          >
-            Add to My Recipes
-          </button>
         </div>
       )}
     </StyledRecipeItem>

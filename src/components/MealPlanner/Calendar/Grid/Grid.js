@@ -5,9 +5,11 @@ import MealSmallIcon from '../MealSmallIcon'
 import {
   toStartOfDay,
   findEventsForDate,
-  getLastMonday
+  getLastMonday,
+  dateToInputFormat
 } from '../../../../helpers/calendarHelpers'
 import { setActiveDate } from '../../../../modules/mealPlanner/mealPlanner.actions'
+import { setFieldValue } from '../../../../modules/form/form.actions'
 
 // The grid of days, renders a month's worth of days and
 // also populates the events on the relevant dates
@@ -50,6 +52,11 @@ const Grid = ({ date, meals, setViewingMeal, setShowingMealForm, actualDate }) =
     console.log(currentDate)
   }
 
+  const addMealOnDate = date => {
+    setShowingMealForm({ visible: true, preselectedDate: date })
+    dispatch(setFieldValue('date', dateToInputFormat(date)))
+  }
+
   return (
     <>
       {dates.map((date, index) => {
@@ -66,7 +73,7 @@ const Grid = ({ date, meals, setViewingMeal, setShowingMealForm, actualDate }) =
               <div>
                 <button
                   className={'addEventOnDay'}
-                  onClick={() => setShowingMealForm({ visible: true, preselectedDate: date.date })}
+                  onClick={() => addMealOnDate(date.date)}
                 >
                   +
                 </button>
