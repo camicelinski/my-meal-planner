@@ -47,7 +47,7 @@ const formFields = [
     name: 'note',
     label: 'Note',
     type: 'text',
-    regExp: /[A-Za-z]+/,
+    // regExp: /[A-Za-z]+/,
     err: 'price must be greater than zero',
     required: false
   }

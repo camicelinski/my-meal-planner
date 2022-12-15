@@ -22,6 +22,8 @@ const RecipeItem = () => {
   const { recipes } = useSelector((state) => state.mealPlanner)
   console.log(recipes)
 
+  const imageSize = '312x231'
+
   const recipeInMyRecipes = React.useMemo(() => {
     return recipes.find(recipe => recipe.id.toString() === id)
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,57 +73,75 @@ const RecipeItem = () => {
     <StyledRecipeItem>
       {recipeData && (
         <div>
-          <button
-            onClick={addRecipeToMeal}
-          >
-            Add to Meal
-          </button>
-          <button
-            onClick={addRecipeToMyRecipes}
-            className={recipeInMyRecipes ? 'hidden' : ''}
-          >
-            Add to My Recipes
-          </button>
-          <h2>
-            {recipeData.title}
-          </h2>
-          <img
-            src={recipeData.image}
-            alt={recipeData.title}
-          />
-          <ul>
-            <li>Preparation time: {recipeData.readyInMinutes} minutes</li>
-            <li>Number of servings: {recipeData.servings}</li>
-          </ul>
-          <div>
-            <h4>Ingredients:</h4>
-            <ul>
-              {recipeData && (
-                recipeData.extendedIngredients.map((ingredient, index) => {
-                  return (
-                    <li
-                      key={`${index}-${ingredient.id}`}
-                    >
-                      <span>{ingredient.amount} </span>
-                      <span>{ingredient.unit} </span>
-                      <span>{ingredient.name}</span>
-                    </li>
-                  )
-                })
-              )}
-            </ul>
+          <div className={'recipe-header'}>
+            <div className={'img-container'}>
+              <img
+                src={`https://spoonacular.com/recipeImages/${recipeData.id}-${imageSize}.${recipeData.imageType}`}
+                alt={recipeData.title}
+              />
+            </div>
+            <div className={'general-info'}>
+              <h2>
+                {recipeData.title}
+              </h2>
+              <ul>
+                <li><strong>Preparation time: </strong>{recipeData.readyInMinutes} minutes</li>
+                <li><strong>Number of servings:</strong> {recipeData.servings}</li>
+              </ul>
+              <div className={'btn-container'}>
+                <button
+                  className={'btn'}
+                  onClick={addRecipeToMeal}
+                >
+                  Add to Meal
+                </button>
+                <button
+                  onClick={addRecipeToMyRecipes}
+                  className={recipeInMyRecipes ? 'hidden' : 'btn'}
+                >
+                  Add to My Recipes
+                </button>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4>Instructions:</h4>
-            <ul>
-              {recipeData && (
-                recipeData.analyzedInstructions[0].steps.map(step => {
-                  return (
-                    <li key={`${recipeData.id}-${step.number}`}>{step.step}</li>
-                  )
-                })
-              )}
-            </ul>
+          <div className={'ingredients-instructions'}>
+            <div className={'ingredients'}>
+              <h4>Ingredients:</h4>
+              <ul className={'ingredients-list'}>
+                {recipeData && (
+                  recipeData.extendedIngredients.map((ingredient, index) => {
+                    return (
+                      <li
+                        className={'ingredient-item'}
+                        key={`${index}-${ingredient.id}`}
+                      >
+                        <span className={'amount'}>{ingredient.amount} </span>
+                        <span className={'unit'}>{ingredient.unit} </span>
+                        <span>{ingredient.name}</span>
+                      </li>
+                    )
+                  })
+                )}
+              </ul>
+            </div>
+            <div className={'instructions'}>
+              <h4>Instructions:</h4>
+              <ul className={'instructions-list'}>
+                {recipeData && (
+                  recipeData.analyzedInstructions[0].steps.map((step, index) => {
+                    return (
+                      <li
+                        className={'instruction-item'}
+                        key={`${recipeData.id}-${step.number}`}
+                      >
+                        <span className={'instruction-step'}><strong>{index + 1}</strong></span>
+                        <span>{step.step}</span>
+                      </li>
+                    )
+                  })
+                )}
+              </ul>
+            </div>
           </div>
         </div>
       )}
