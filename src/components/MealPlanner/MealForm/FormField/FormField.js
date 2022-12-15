@@ -81,18 +81,20 @@ const FormField = (props) => {
     return (
       <>
         {renderFormField()}
-        <StyledLink
-          activeClassName={activeClass}
-          to={'/recipes/1'}
-        >
-          <button>Select from My Recipes</button>
-        </StyledLink>
-        <StyledLink
-          activeClassName={activeClass}
-          to={'/find-recipe/1'}
-        >
-          <button>Get New Recipe</button>
-        </StyledLink>
+        <div className={'btn-container'}>
+          <StyledLink
+            activeClassName={activeClass}
+            to={'/recipes/1'}
+          >
+            <button>Select from My Recipes</button>
+          </StyledLink>
+          <StyledLink
+            activeClassName={activeClass}
+            to={'/find-recipe/1'}
+          >
+            <button>Get New Recipe</button>
+          </StyledLink>
+        </div>
       </>
     )
   } else {

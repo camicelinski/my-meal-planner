@@ -9,7 +9,7 @@ import FormField from './FormField'
 // import RecipesList from '../../RecipesList'
 import validateForm from '../../../helpers/validateForm'
 import { setFieldValue, clearFields } from '../../../modules/form/form.actions'
-import { getMyMeals, loadMealsAction } from '../../../modules/mealPlanner/mealPlanner.actions'
+import { getMyMeals } from '../../../modules/mealPlanner/mealPlanner.actions'
 import { dateToInputFormat } from '../../../helpers/calendarHelpers'
 import MealPlannerAPI from '../../../modules/mealPlanner/mealPlanner.api'
 // import { getCurrentDate } from '../../../helpers/helperFunctions'
@@ -39,7 +39,8 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
   // const activeClass = 'active'
 
   React.useEffect(() => {
-    mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
+    dispatch(getMyMeals())
+    // mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
   }, [])
 
   const handleInputChange = (e, name, type) => {
@@ -60,7 +61,7 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
           name={name}
           label={label}
           type={type}
-          value={values[name]}
+          value={name === 'date' ? preselectedDate : values[name]}
           placeholder={placeholder || null}
           options={options}
           required={required}
@@ -78,8 +79,7 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
     if (err.length === 0) {
       // dispatch(addRow(valuesForTableRow))
       // dispatch(pushRowsToLS())
-      mealPlannerAPI.add('/meals', values)
-      dispatch(getMyMeals())
+      mealPlannerAPI.add('/meals', values).then(() => dispatch(getMyMeals()))
       dispatch(clearFields())
       setShowingMealForm({ visible: false })
     }
@@ -99,7 +99,7 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
 
         {withMeal
           ? (
-            <>
+            <div className={'btn-container'}>
               <button onClick={() => editMeal(values)}>Edit meal</button>
               <button
                 className={'close'}
@@ -110,10 +110,10 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
               >
                 Cancel (go back to meal view)
               </button>
-            </>
+            </div>
             )
           : (
-            <>
+            <div className={'btn-container'}>
               <button
                 onClick={handleSubmit}
                 type={'submit'}
@@ -126,7 +126,7 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
               >
                 Cancel (go back to calendar)
               </button>
-            </>
+            </div>
             )}
       </form>
     </Modal>

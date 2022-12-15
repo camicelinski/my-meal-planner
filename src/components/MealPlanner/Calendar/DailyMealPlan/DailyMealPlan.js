@@ -11,7 +11,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 // import { saveRecipeAction } from '../../modules/mealPlanner/mealPlanner.actions'
 import StyledDailyMealPlan from './DailyMealPlan.styled'
-import { loadMealsAction, getMyMeals } from '../../../../modules/mealPlanner/mealPlanner.actions'
+import { getMyMeals } from '../../../../modules/mealPlanner/mealPlanner.actions'
 // import { getMyRecipes } from '../../modules/mealPlanner/mealPlanner.actions'
 
 const DailyMealPlan = () => {
@@ -22,7 +22,8 @@ const DailyMealPlan = () => {
   const mealPlannerAPI = new MealPlannerAPI()
 
   React.useEffect(() => {
-    mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
+    dispatch(getMyMeals())
+    // mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
   }, [])
 
   const currentMeals = findEventsForDate(meals, activeDate)
@@ -31,8 +32,7 @@ const DailyMealPlan = () => {
   console.log(sortedCurrentMeals)
 
   const deleteMeal = (id) => {
-    mealPlannerAPI.remove('/meals', id)
-    dispatch(getMyMeals())
+    mealPlannerAPI.remove('/meals', id).then(() => dispatch(getMyMeals()))
     console.log(meals)
   }
 

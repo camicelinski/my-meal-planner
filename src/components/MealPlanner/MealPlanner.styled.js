@@ -26,9 +26,8 @@ const StyledMealPlanner = styled.div`
 
 .cell:nth-child(9) {
   border-left: none;    
-  -moz-border-radius-bottom-left: var(--radius-primary);
-  -webkit-border-bottom-left-radius: var(--radius-primary);
-  border-bottom-left-radius: var(--radius-primary);
+  border-bottom-left-radius: var(--radius-primary);-moz-border-radius-bottom-left: var(--radius-primary);
+  -webkit-border-bottom-left-radius: var(--radius-primary);  
 }
 
 .cell:last-child {
@@ -165,26 +164,36 @@ const StyledMealPlanner = styled.div`
   padding: 10px;
 }
 
-.form input, .form select {
+.form input,
+.form select {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
   width: calc(100% - 16px);
   padding: 5px;
-  margin: 6px 0 10px 0;
-  border: 3px solid #cacaca;
+  margin: 5px 0;
+  border: 1px solid var(--border-calendar);
   border-radius: 4px;
-  background: #f9f9f9;
+  height: fit-content;
+  background: var(--bg-input);
 }
 
-.form select {
-  width: 100%;
-}
+// .form select {
+//   width: 100%;
+// }
 
 .form label {
   font-weight: bold;
   text-align: left;
-  font-size: 0.8em;
+  font-size: 0.75rem;
   display: block;
+  padding: 8px 10px 0;
 }
 
+.form div {
+  margin: 0;
+}
+
+// nao mudar!!
 button {
   width: 100%;
   // background: #3fb73f;
@@ -194,6 +203,23 @@ button {
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.form .btn-container {
+  margin-top: 5px;
+}
+
+.form button {
+  // margin-top: 8px;
+  margin: 2px 0;
+  font-size: 0.8rem;
+  width: calc(100% - 16px);
+  background-color: var(--color-theme);
+  transition: var(--transition-style);
+}
+
+.form button:hover {
+  background-color: var(--btn-theme-hover);
 }
 
 button.red {
@@ -217,7 +243,7 @@ button.red {
   text-align: center;
   left: 25%;
   top: 5%;
-  border-radius: 5px;
+  border-radius: var(--radius-primary);
 }
 
 .modal .inner {
@@ -226,9 +252,12 @@ button.red {
 
 .modal h3 {
   margin: 0;
-  background: #e6e6e6;
+  background: var(--color-theme-hover);
   padding: 12px;
-  border-radius: 5px;
+  border-top-left-radius: var(--radius-primary);-moz-border-radius-top-left: var(--radius-primary);
+  -webkit-border-top-left-radius: var(--radius-primary);
+  border-top-right-radius: var(--radius-primary);-moz-border-radius-top-right: var(--radius-primary);
+  -webkit-border-top-right-radius: var(--radius-primary);
 }
 
 .modal p {
@@ -237,9 +266,16 @@ button.red {
 }
 
 .modal .close {
-  margin-top: 22px;
+  // margin-top: 22px;
   font-size: 0.7em;
-  display: block;
+  background: var(--bg-calendar);
+  color: var(--text-primary);
+  // display: block;
+  transition: var(--transition-style);
+}
+
+.modal .close:hover {
+  background: var(--border-calendar);
 }
 
 .eventModal p {

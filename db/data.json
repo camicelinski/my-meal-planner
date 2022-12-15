@@ -10,60 +10,28 @@
       "id": 1
     },
     {
-      "date": "2022-12-02",
-      "type": "elevenses",
-      "name": "kklklk",
-      "servings": "2",
-      "note": "",
-      "id": 4
-    },
-    {
-      "date": "2022-12-08",
-      "type": "snacks",
-      "name": "mm",
-      "servings": "3",
-      "note": "",
-      "id": 5
-    },
-    {
-      "date": "2022-12-09",
-      "type": "dinner",
-      "name": "pasta",
-      "servings": "2",
-      "note": "",
-      "id": 6
-    },
-    {
-      "date": "2022-12-22",
-      "type": "elevenses",
-      "name": "apple",
-      "servings": "1",
-      "note": "",
-      "id": 8
-    },
-    {
-      "date": "2022-12-17",
-      "type": "snacks",
-      "name": "Crab Cakes Eggs Benedict",
-      "servings": "4",
-      "note": "",
-      "id": 11
-    },
-    {
-      "date": "2022-12-17",
-      "type": "dinner",
-      "name": "Easy Vegetable Beef Soup",
-      "servings": "4",
-      "note": "",
-      "id": 13
-    },
-    {
       "date": "2022-12-17",
       "type": "breakfast",
       "name": "Smoked Salmon Eggs Benedict With Lemon Dill Hollandaise",
       "servings": "2",
       "note": "Breakfast with sister",
       "id": 14
+    },
+    {
+      "date": "2022-12-17",
+      "type": "snacks",
+      "name": "Smoked Salmon Eggs Benedict With Lemon Dill Hollandaise",
+      "servings": "4",
+      "note": "",
+      "id": 15
+    },
+    {
+      "date": "2022-12-18",
+      "type": "elevenses",
+      "name": "Crab Cakes Eggs Benedict",
+      "servings": "2",
+      "note": "",
+      "id": 16
     }
   ],
   "recipes": [
