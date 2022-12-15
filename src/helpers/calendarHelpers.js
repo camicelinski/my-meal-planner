@@ -71,3 +71,20 @@ export const findEventsForDate = (events, date) => {
     // return (dateTime >= eventFromTime && dateTime <= eventToTime)
   })
 }
+
+export const getLastMonday = (d) => {
+  d = new Date(d)
+  const day = d.getDay()
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1) // adjust when day is sunday
+  return new Date(d.setDate(diff))
+}
+
+export const generateDates = (startingDate, meals, rows) => {
+  const newDates = []
+  for (let i = 0; i < (rows * 7); i++) {
+    const date = new Date(startingDate)
+    newDates.push({ date, meals: findEventsForDate(meals, date) })
+    startingDate.setDate(startingDate.getDate() + 1)
+  }
+  return newDates
+}

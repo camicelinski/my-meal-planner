@@ -10,16 +10,6 @@
       "id": 1
     },
     {
-      "date": "2022-12-21",
-      "type": "snacks",
-      "name": [
-        "Apple",
-        "Strawberry"
-      ],
-      "note": "",
-      "id": 3
-    },
-    {
       "date": "2022-12-02",
       "type": "elevenses",
       "name": "kklklk",
@@ -58,14 +48,6 @@
       "servings": "4",
       "note": "",
       "id": 11
-    },
-    {
-      "date": "2022-12-18",
-      "type": "lunch",
-      "name": "Barbecue Chicken Cauliflower Couscous Bowls",
-      "servings": "6",
-      "note": "Special birthday lunch",
-      "id": 12
     },
     {
       "date": "2022-12-17",

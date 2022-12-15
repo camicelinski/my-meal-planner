@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import MealSmallIcon from '../MealSmallIcon'
 import {
   toStartOfDay,
-  findEventsForDate
+  findEventsForDate,
+  getLastMonday
 } from '../../../../helpers/calendarHelpers'
 import { setActiveDate } from '../../../../modules/mealPlanner/mealPlanner.actions'
 
@@ -13,30 +14,27 @@ import { setActiveDate } from '../../../../modules/mealPlanner/mealPlanner.actio
 const Grid = ({ date, meals, setViewingMeal, setShowingMealForm, actualDate }) => {
   // const ROWS_COUNT = 6
   const ROWS_COUNT = 1
-  const currentDate = toStartOfDay(new Date())
   // const currentDate = new Date()
 
   const { activeDate } = useSelector((state) => state.mealPlanner)
+  const currentDate = toStartOfDay(new Date())
+  const activeDay = toStartOfDay(new Date(activeDate))
+
   const dispatch = useDispatch()
 
-  // const [activeDate, setActiveDate] = React.useState(currentDate)
+  const startingDate = getLastMonday(activeDay)
+  // const [startingDate, setStartingDate] = React.useState(getLastMonday(firstDate))
 
   React.useEffect(() => {
-  }, [activeDate])
+    // setStartingDate(getLastMonday(activeDate))
+  }, [startingDate])
 
-  const getLastMonday = (d) => {
-    d = new Date(d)
-    const day = d.getDay()
-    const diff = d.getDate() - day + (day === 0 ? -6 : 1) // adjust when day is sunday
-    return new Date(d.setDate(diff))
-  }
   // Finds the closest Monday relative to the first day of
   // the target month/year combination
   // Then increment upon this day until we have a full set
   // of date objects to work with
   // const startingDate = new Date(date.getFullYear(), date.getMonth(), 1)
-  const startingDate = getLastMonday(currentDate)
-  startingDate.setDate(startingDate.getDate() - (startingDate.getDay() - 1))
+  // startingDate.setDate(startingDate.getDate() - (startingDate.getDay() - 1))
 
   const dates = []
   for (let i = 0; i < (ROWS_COUNT * 7); i++) {

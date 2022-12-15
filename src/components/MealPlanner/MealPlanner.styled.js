@@ -24,8 +24,18 @@ const StyledMealPlanner = styled.div`
   border-right: 1px solid var(--bg-calendar);
 }
 
+.cell:nth-child(9) {
+  border-left: none;    
+  -moz-border-radius-bottom-left: var(--radius-primary);
+  -webkit-border-bottom-left-radius: var(--radius-primary);
+  border-bottom-left-radius: var(--radius-primary);
+}
+
 .cell:last-child {
-    border-right: none;
+  border-right: none;    
+  -moz-border-radius-bottom-right: var(--radius-primary);
+  -webkit-border-bottom-right-radius: var(--radius-primary);
+  border-bottom-right-radius: var(--radius-primary);
 }
 
 .cell .date {
