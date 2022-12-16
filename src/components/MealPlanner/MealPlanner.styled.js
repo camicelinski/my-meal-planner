@@ -1,11 +1,14 @@
 import styled from 'styled-components'
 
 const StyledMealPlanner = styled.div`
+  padding: 20px;
+  
   .calendar {
-    margin: 20px;
+    margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
     width: cal(100% - 40px);
+    max-width: 1024px;
     // font-family: sans-serif;
     border: 2px solid var(--border-calendar);
     border-radius: var(--radius-primary);

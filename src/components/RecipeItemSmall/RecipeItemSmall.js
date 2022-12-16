@@ -5,6 +5,7 @@ import parse from 'html-react-parser'
 
 import StyledLink from '../../styled/components/Link.styled'
 import StyledRecipeItemSmall from './RecipeItemSmall.styled'
+import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api'
 import { getRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
 import { setFieldValue } from '../../modules/form/form.actions'
 import { setShowingMealFormAction } from '../../modules/mealPlanner/mealPlanner.actions'
@@ -18,6 +19,8 @@ const RecipeItemSmall = ({ recipe }) => {
   const { recipes } = useSelector((state) => state.mealPlanner)
   const dispatch = useDispatch()
 
+  const mealPlannerAPI = new MealPlannerAPI()
+
   const getRecipeData = (id) => {
     const recipeInMyRecipes = recipes.find(recipe => recipe.id.toString() === id.toString())
     if (recipeInMyRecipes === undefined) {
@@ -27,6 +30,7 @@ const RecipeItemSmall = ({ recipe }) => {
 
   const addRecipeToMeal = () => {
     dispatch(setFieldValue('name', recipe.title))
+    mealPlannerAPI.add('/recipes', recipe)
     dispatch(setShowingMealFormAction(true))
   }
 

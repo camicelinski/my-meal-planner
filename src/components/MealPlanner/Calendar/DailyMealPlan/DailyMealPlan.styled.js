@@ -1,7 +1,10 @@
 import styled from 'styled-components'
 
 const StyledDailyMealPlan = styled.div`
-  padding: 10px 0;
+  padding: 10px 30px;
+  margin: auto;
+  width: cal(100% - 40px);
+  max-width: 1024px;
 
   .meal-info {
     display: flex;

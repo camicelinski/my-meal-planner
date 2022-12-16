@@ -11,18 +11,29 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 // import { saveRecipeAction } from '../../modules/mealPlanner/mealPlanner.actions'
 import StyledDailyMealPlan from './DailyMealPlan.styled'
-import { getMyMeals } from '../../../../modules/mealPlanner/mealPlanner.actions'
-// import { getMyRecipes } from '../../modules/mealPlanner/mealPlanner.actions'
+import StyledLink from '../../../../styled/components/Link.styled'
+import { getMyMeals, getMyRecipes } from '../../../../modules/mealPlanner/mealPlanner.actions'
 
 const DailyMealPlan = () => {
-  const { meals, activeDate } = useSelector((state) => state.mealPlanner)
+  const { meals, recipes, activeDate } = useSelector((state) => state.mealPlanner)
   console.log(meals)
+
+  const titleToUrl = (name) => {
+    return name.trim().replace(/\s+/g, '-').toLowerCase()
+  }
+
+  const getRecipeId = (title) => {
+    console.log(recipes.filter(recipe => recipe.title.toLowerCase() === title.toLowerCase()).map(recipe => recipe.id))
+    return recipes.filter(recipe => recipe.title.toLowerCase() === title.toLowerCase()).map(recipe => recipe.id)
+  }
+  const activeClass = 'active'
 
   const dispatch = useDispatch()
   const mealPlannerAPI = new MealPlannerAPI()
 
   React.useEffect(() => {
     dispatch(getMyMeals())
+    dispatch(getMyRecipes())
     // mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
   }, [])
 
@@ -35,6 +46,11 @@ const DailyMealPlan = () => {
     mealPlannerAPI.remove('/meals', id).then(() => dispatch(getMyMeals()))
     console.log(meals)
   }
+  /*
+  const getRecipeId = (name) => {
+    // dispatch(getMyRecipes())
+    const myRecipeID = recipes.filter(recipe => recipe.title.toLowerCase().includes(name.toLowerCase()).map(recipe => recipe.id)
+  } */
 
   return (
     <StyledDailyMealPlan>
@@ -49,7 +65,12 @@ const DailyMealPlan = () => {
                 {meal.type}
               </h4>
               <div className={'meal-name-and-note'}>
-                <p className={'meal-name'}>{meal.name}</p>
+                <StyledLink
+                  activeClassName={activeClass}
+                  to={`/recipe/${getRecipeId(meal.name)}/${titleToUrl(meal.name)}`}
+                >
+                  <p className={'meal-name'}>{meal.name}</p>
+                </StyledLink>
                 <p className={'meal-note'}>{meal.note}</p>
               </div>
               <p className={'meal-servings'}>servings: {meal.servings}</p>

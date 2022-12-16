@@ -4971,6 +4971,277 @@
       ],
       "originalId": null,
       "spoonacularSourceUrl": "https://spoonacular.com/red-lentil-soup-with-chicken-and-turnips-715415"
+    },
+    {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "dairyFree": false,
+      "veryHealthy": false,
+      "cheap": false,
+      "veryPopular": false,
+      "sustainable": false,
+      "lowFodmap": false,
+      "weightWatcherSmartPoints": 15,
+      "gaps": "no",
+      "preparationMinutes": -1,
+      "cookingMinutes": -1,
+      "aggregateLikes": 63,
+      "healthScore": 15,
+      "creditsText": "foodista.com",
+      "sourceName": "foodista.com",
+      "pricePerServing": 196.79,
+      "id": 657939,
+      "title": "Ratatouille With Brie",
+      "readyInMinutes": 45,
+      "servings": 4,
+      "sourceUrl": "https://www.foodista.com/recipe/YKQ5H3TL/ratatouille-with-brie",
+      "image": "https://spoonacular.com/recipeImages/657939-312x231.jpg",
+      "imageType": "jpg",
+      "summary": "You can never have too many Mediterranean recipes, so give Ratatouille With Brie a try. This main course has <b>490 calories</b>, <b>14g of protein</b>, and <b>45g of fat</b> per serving. This gluten free, lacto ovo vegetarian, and primal recipe serves 4 and costs <b>$1.97 per serving</b>. If you have brie log such as alouette, plum tomatoes, zucchini, and a few other ingredients on hand, you can make it. This recipe from Foodista has 63 fans. From preparation to the plate, this recipe takes around <b>around 45 minutes</b>. Overall, this recipe earns a <b>pretty good spoonacular score of 72%</b>. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/ratatouilles-ratatouille-thomas-kellers-confit-byaldi-498135\">Ratatouille’s Ratatouille (Thomas Keller’s Confit Byaldi)</a>, <a href=\"https://spoonacular.com/recipes/confit-byaldi-aka-ratatouilles-ratatouille-611946\">Confit Byaldi (aka Ratatouille’s Ratatouille)</a>, and <a href=\"https://spoonacular.com/recipes/brie-and-caramelized-shallots-puff-pastry-brie-tart-546740\">Brie and caramelized Shallots Puff Pastry Brie Tart</a>.",
+      "cuisines": [
+        "Mediterranean",
+        "French",
+        "European"
+      ],
+      "dishTypes": [
+        "side dish",
+        "lunch",
+        "main course",
+        "main dish",
+        "dinner"
+      ],
+      "diets": [
+        "gluten free",
+        "lacto ovo vegetarian",
+        "primal"
+      ],
+      "occasions": [],
+      "analyzedInstructions": [
+        {
+          "name": "",
+          "steps": [
+            {
+              "number": 1,
+              "step": "Remove outer peel from eggplant and dice into  inch pieces",
+              "ingredients": [
+                {
+                  "id": 11209,
+                  "name": "eggplant",
+                  "localizedName": "eggplant",
+                  "image": "eggplant.png"
+                }
+              ],
+              "equipment": []
+            },
+            {
+              "number": 2,
+              "step": "Heat 1-2 oz. of olive oil in a heavy gauge skillet",
+              "ingredients": [
+                {
+                  "id": 4053,
+                  "name": "olive oil",
+                  "localizedName": "olive oil",
+                  "image": "olive-oil.jpg"
+                }
+              ],
+              "equipment": [
+                {
+                  "id": 404645,
+                  "name": "frying pan",
+                  "localizedName": "frying pan",
+                  "image": "pan.png"
+                }
+              ]
+            },
+            {
+              "number": 3,
+              "step": "Saut the diced eggplant for 2-3 minutes then place on a towel to drain",
+              "ingredients": [
+                {
+                  "id": 11209,
+                  "name": "eggplant",
+                  "localizedName": "eggplant",
+                  "image": "eggplant.png"
+                }
+              ],
+              "equipment": [],
+              "length": {
+                "number": 3,
+                "unit": "minutes"
+              }
+            },
+            {
+              "number": 4,
+              "step": "After draining place cooked eggplant into a small oval casserole dish",
+              "ingredients": [
+                {
+                  "id": 11209,
+                  "name": "eggplant",
+                  "localizedName": "eggplant",
+                  "image": "eggplant.png"
+                }
+              ],
+              "equipment": [
+                {
+                  "id": 404635,
+                  "name": "casserole dish",
+                  "localizedName": "casserole dish",
+                  "image": "casserole-dish.png"
+                }
+              ]
+            },
+            {
+              "number": 5,
+              "step": "Preheat oven to 375 F",
+              "ingredients": [],
+              "equipment": [
+                {
+                  "id": 404784,
+                  "name": "oven",
+                  "localizedName": "oven",
+                  "image": "oven.jpg",
+                  "temperature": {
+                    "number": 375,
+                    "unit": "Fahrenheit"
+                  }
+                }
+              ]
+            },
+            {
+              "number": 6,
+              "step": "Carefully slice the zucchini , yellow squash , and tomatoes about  inch even slices",
+              "ingredients": [
+                {
+                  "id": 10211641,
+                  "name": "yellow squash",
+                  "localizedName": "yellow squash",
+                  "image": "yellow-squash.jpg"
+                },
+                {
+                  "id": 11529,
+                  "name": "tomato",
+                  "localizedName": "tomato",
+                  "image": "tomato.png"
+                },
+                {
+                  "id": 11477,
+                  "name": "zucchini",
+                  "localizedName": "zucchini",
+                  "image": "zucchini.jpg"
+                }
+              ],
+              "equipment": []
+            },
+            {
+              "number": 7,
+              "step": "Slice the Brie also into  inch slices (utilizing a cheese wire makes simplifies this)",
+              "ingredients": [
+                {
+                  "id": 1041009,
+                  "name": "cheese",
+                  "localizedName": "cheese",
+                  "image": "cheddar-cheese.png"
+                },
+                {
+                  "id": 1006,
+                  "name": "brie",
+                  "localizedName": "brie",
+                  "image": "brie.jpg"
+                }
+              ],
+              "equipment": []
+            },
+            {
+              "number": 8,
+              "step": "Begin placing sliced yellow squash , zucchini , sliced Brie and tomatoes in a shingled pattern working from the outside of the casserole towards the center",
+              "ingredients": [
+                {
+                  "id": 10211641,
+                  "name": "yellow squash",
+                  "localizedName": "yellow squash",
+                  "image": "yellow-squash.jpg"
+                },
+                {
+                  "id": 11529,
+                  "name": "tomato",
+                  "localizedName": "tomato",
+                  "image": "tomato.png"
+                },
+                {
+                  "id": 11477,
+                  "name": "zucchini",
+                  "localizedName": "zucchini",
+                  "image": "zucchini.jpg"
+                },
+                {
+                  "id": 1006,
+                  "name": "brie",
+                  "localizedName": "brie",
+                  "image": "brie.jpg"
+                }
+              ],
+              "equipment": []
+            },
+            {
+              "number": 9,
+              "step": "When all vegetables and cheese are placed in the casserole, drizzle with the remaining olive oil and sprinkle with chopped thyme",
+              "ingredients": [
+                {
+                  "id": 11583,
+                  "name": "vegetable",
+                  "localizedName": "vegetable",
+                  "image": "mixed-vegetables.png"
+                },
+                {
+                  "id": 4053,
+                  "name": "olive oil",
+                  "localizedName": "olive oil",
+                  "image": "olive-oil.jpg"
+                },
+                {
+                  "id": 1041009,
+                  "name": "cheese",
+                  "localizedName": "cheese",
+                  "image": "cheddar-cheese.png"
+                },
+                {
+                  "id": 2049,
+                  "name": "thyme",
+                  "localizedName": "thyme",
+                  "image": "thyme.jpg"
+                }
+              ],
+              "equipment": []
+            },
+            {
+              "number": 10,
+              "step": "Season with salt and pepper and bake in the oven for 10-15 minutes until bubbly",
+              "ingredients": [
+                {
+                  "id": 1102047,
+                  "name": "salt and pepper",
+                  "localizedName": "salt and pepper",
+                  "image": "salt-and-pepper.jpg"
+                }
+              ],
+              "equipment": [
+                {
+                  "id": 404784,
+                  "name": "oven",
+                  "localizedName": "oven",
+                  "image": "oven.jpg"
+                }
+              ],
+              "length": {
+                "number": 15,
+                "unit": "minutes"
+              }
+            }
+          ]
+        }
+      ],
+      "spoonacularSourceUrl": "https://spoonacular.com/ratatouille-with-brie-657939"
     }
   ],
   "groceryList": []
