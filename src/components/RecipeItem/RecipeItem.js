@@ -9,6 +9,8 @@ import { useParams } from 'react-router-dom'
 import StyledRecipeItem from './RecipeItem.styled'
 import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api'
 import { setFieldValue } from '../../modules/form/form.actions'
+import { setShowingMealFormAction } from '../../modules/mealPlanner/mealPlanner.actions'
+import StyledLink from '../../styled/components/Link.styled'
 // import { getMyRecipes } from '../../modules/mealPlanner/mealPlanner.actions'
 
 const RecipeItem = () => {
@@ -23,6 +25,7 @@ const RecipeItem = () => {
   console.log(recipes)
 
   const imageSize = '312x231'
+  const activeClass = 'active'
 
   const recipeInMyRecipes = React.useMemo(() => {
     return recipes.find(recipe => recipe.id.toString() === id)
@@ -67,6 +70,7 @@ const RecipeItem = () => {
 
   const addRecipeToMeal = () => {
     dispatch(setFieldValue('name', recipeData.title))
+    dispatch(setShowingMealFormAction(true))
   }
 
   return (
@@ -89,12 +93,17 @@ const RecipeItem = () => {
                 <li><strong>Number of servings:</strong> {recipeData.servings}</li>
               </ul>
               <div className={'btn-container'}>
-                <button
-                  className={'btn'}
-                  onClick={addRecipeToMeal}
+                <StyledLink
+                  activeClassName={activeClass}
+                  to={'/home'}
                 >
-                  Add to Meal
-                </button>
+                  <button
+                    className={'btn'}
+                    onClick={addRecipeToMeal}
+                  >
+                    Add to Meal
+                  </button>
+                </StyledLink>
                 <button
                   onClick={addRecipeToMyRecipes}
                   className={recipeInMyRecipes ? 'hidden' : 'btn'}
@@ -115,7 +124,7 @@ const RecipeItem = () => {
                         className={'ingredient-item'}
                         key={`${index}-${ingredient.id}`}
                       >
-                        <span className={'amount'}>{ingredient.amount} </span>
+                        <span className={'amount'}>{Number.isInteger(ingredient.amount) ? ingredient.amount : ingredient.amount.toFixed(1)} </span>
                         <span className={'unit'}>{ingredient.unit} </span>
                         <span>{ingredient.name}</span>
                       </li>

@@ -10,6 +10,7 @@ const StyledMealPlanner = styled.div`
     border: 2px solid var(--border-calendar);
     border-radius: var(--radius-primary);
     position: relative;
+    background: rgba(255, 255, 255, 0.7);
   }
 
   .calendar a {
@@ -17,6 +18,7 @@ const StyledMealPlanner = styled.div`
   }
 
   .cell {
+    padding: 5px;
     // background: #fffeee;
     width: 14.2857%;
     height: 90px;
@@ -39,7 +41,8 @@ const StyledMealPlanner = styled.div`
   }
 
   .cell .date {
-    margin: 5px;
+    // margin: 5px;
+    margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
   }
@@ -230,20 +233,20 @@ const StyledMealPlanner = styled.div`
 
   .overlay {
     background-color: rgba(0, 0, 0, 0.7);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
   }
 
   .modal {
-    background: white;
+    background: var(--bg-primary);
     position: absolute;
     width: 50%;
     text-align: center;
     left: 25%;
-    top: 5%;
+    top: -180px;
     border-radius: var(--radius-primary);
   }
 

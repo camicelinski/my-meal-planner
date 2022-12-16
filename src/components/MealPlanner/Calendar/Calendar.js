@@ -23,7 +23,7 @@ const MOCK_LOADING_TIME = 1000
 // const SAMPLE_META = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 
 // The "main" component, our actual calendar
-const Calendar = ({ month, year, preloadedMeals = [] }) => {
+const Calendar = ({ month, year, preloadedMeals = [], isMealFormVisible }) => {
   const selectedDate = new Date(year, month - 1)
   const parsedMeals = parseEvents(preloadedMeals)
 
@@ -32,7 +32,7 @@ const Calendar = ({ month, year, preloadedMeals = [] }) => {
 
   const [date, setDate] = useState(selectedDate)
   const [viewingMeal, setViewingMeal] = useState(false)
-  const [showingMealForm, setShowingMealForm] = useState({ visible: false })
+  const [showingMealForm, setShowingMealForm] = useState({ visible: isMealFormVisible })
   const [isLoading, setIsLoading] = useState(false)
   const [feedback, setFeedback] = useState()
   const [meals, setMeals] = useState(parsedMeals)

@@ -14,8 +14,8 @@ const StyledImage = styled.img`
     top: 0;
     right: 0;
     z-index: -99;
-    width: 364px;
-    height: 180px;
+    width: 546px;
+    height: 270px;
     // -radius: 50%;
     // height: 135px;
   }

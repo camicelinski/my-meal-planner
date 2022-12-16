@@ -8,8 +8,11 @@ const Modal = ({ children, onClose, title, className }) => {
       <div
         className={'overlay'}
         onClick={onClose}
-      />
-      <div className={`modal ${className}`}>
+      >
+      </div>
+      <div
+        className={`modal ${className}`}
+      >
         <h3>{title}</h3>
         <div className={'inner'}>
           {children}

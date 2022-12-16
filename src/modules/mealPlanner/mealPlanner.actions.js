@@ -52,6 +52,13 @@ export function setActiveDate (date) {
   }
 }
 
+export function setShowingMealFormAction (value) {
+  return {
+    type: types.SET_SHOWING_MEAL_FORM,
+    payload: { value }
+  }
+}
+
 export const getMyRecipes = () => async (dispatch, getState) => {
   const myRecipes = await mealPlannerAPI.load('/recipes')
   const infobefore = getState()

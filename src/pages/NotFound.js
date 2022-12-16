@@ -5,7 +5,7 @@ import StyledNotFound from '../styled/components/NotFound.styled'
 const NotFound = () => {
   return (
     <>
-      <StyledNotFound>Essa página não existe. Retorne à <Link to={'/'}>página principal.</Link></StyledNotFound>
+      <StyledNotFound>Page not found. Return to <Link to={'/'}>home.</Link></StyledNotFound>
     </>
   )
 }

@@ -8,6 +8,7 @@ const initState = {
   meals: [],
   activeDate: currentDate,
   recipes: [],
+  isMealFormVisible: false,
   groceryList: []
 }
 
@@ -75,6 +76,12 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         activeDate: action.payload.date
+      }
+
+    case types.SET_SHOWING_MEAL_FORM:
+      return {
+        ...state,
+        isMealFormVisible: action.payload.value
       }
 
     default:

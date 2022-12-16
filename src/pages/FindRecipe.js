@@ -5,6 +5,8 @@ import { Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import Pagination from '../components/Pagination/Pagination'
 import RecipeItemSmall from '../components/RecipeItemSmall'
+import StyledLink from '../styled/components/Link.styled'
+import StyledRecipes from '../styled/components/Recipes.styled'
 // import { sortByDate } from '../helpers/sortByDate'
 // import SpoonacularAPI from '../modules/spoonacular/spoonacular.api'
 import { getRecipesList } from '../modules/spoonacular/spoonacular.actions'
@@ -20,7 +22,7 @@ const FindRecipe = () => {
   const [phrase, setPhrase] = React.useState('')
 
   const pageUrl = '/find-recipe'
-  // const activeClass = 'active'
+  const activeClass = 'active'
 
   const getRecipesData = () => {
     dispatch(getRecipesList(phrase))
@@ -32,14 +34,29 @@ const FindRecipe = () => {
   }
 
   return (
-    <main>
+    <StyledRecipes>
       <section className={'controls'}>
-        <input
-          type={'text'}
-          placeholder={'e.g. pasta'}
-          onChange={handleChange}
-        />
-        <button onClick={getRecipesData}>Get Recipes</button>
+        <div className={'search'}>
+          <input
+            type={'text'}
+            placeholder={'e.g. Chocolate Cookies'}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={'get-new-recipe'}>
+          <StyledLink
+            activeClassName={activeClass}
+            to={'/find-recipe/1'}
+          >
+            <button
+              type={'submit'}
+              className={'btn'}
+              onClick={getRecipesData}
+            >
+              Search in Spoonacular
+            </button>
+          </StyledLink>
+        </div>
       </section>
       <Route path={`${pageUrl}/:page`}>
         {recipes && (
@@ -58,7 +75,7 @@ const FindRecipe = () => {
           </Pagination>
         )}
       </Route>
-    </main>
+    </StyledRecipes>
   )
 }
 

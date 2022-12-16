@@ -2,7 +2,8 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 // import Home from '../pages/Home'
-import MealPlanner from './MealPlanner'
+// import MealPlanner from './MealPlanner'
+import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
 import FindRecipe from '../pages/FindRecipe'
 import Recipes from '../pages/Recipes'
@@ -21,7 +22,7 @@ const Routes = ({ location }) => {
         <Redirect to={'/home'} />
       </Route>
       <Route path={'/home'} >
-        <MealPlanner />
+        <Home />
       </Route>
       <Route path={'/recipes/:page'} >
         <Recipes />

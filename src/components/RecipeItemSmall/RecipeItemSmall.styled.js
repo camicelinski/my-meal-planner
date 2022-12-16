@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 const StyledRecipeItemSmall = styled.div`
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 20px;
+  // max-width: 1024px;
+  // margin: 0 auto;
+  padding: 20px 40px;
 
   a {    
     color: var(--color-theme);
@@ -24,6 +24,7 @@ const StyledRecipeItemSmall = styled.div`
 
   .recipe-container {
     display: flex;
+    // justify-content: center;
   }
 
   .img-section {
@@ -31,9 +32,12 @@ const StyledRecipeItemSmall = styled.div`
     max-width: 312px;
   }
 
-  p {
+  .recipe-summary {
     width: 55%;
     margin-left: 30px;
+  }
+
+  p {
     text-align: justify;
     font-size: 0.9rem;
     line-height: 1.25rem;
@@ -58,6 +62,22 @@ const StyledRecipeItemSmall = styled.div`
     // height: 100%;
     border-radius: var(--radius-primary);
     object-fit: cover;
+  }
+
+  .btn-add {
+    margin-top: 12px;
+    width: fit-content;
+    padding: 8px 20px;border: 0;
+    color: var(--bg-primary);
+    border-radius: var(--radius-secondary);
+    font-size: 0.8rem;
+    background: var(--color-theme);
+    transition: var(--transition-style);
+    cursor: pointer;
+  }
+
+  .btn-add:hover {
+    background: var(--btn-theme-hover);
   }
 `
 

@@ -6,6 +6,7 @@ const UPDATE_MEAL = 'updateMeal'
 const LOAD_RECIPES = 'loadRecipes'
 const SAVE_RECIPE = 'saveRecipe'
 const SET_ACTIVE_DATE = 'setActiveDate'
+const SET_SHOWING_MEAL_FORM = 'setMealForm'
 
 export default {
   LOAD_MEALS,
@@ -14,5 +15,6 @@ export default {
   UPDATE_MEAL,
   LOAD_RECIPES,
   SAVE_RECIPE,
-  SET_ACTIVE_DATE
+  SET_ACTIVE_DATE,
+  SET_SHOWING_MEAL_FORM
 }

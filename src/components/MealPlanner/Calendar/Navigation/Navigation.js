@@ -36,7 +36,7 @@ const Navigation = ({ date, setDate, setShowingEventForm }) => {
           onClick={() => moveBack()}
         >
           <span className={'icon'}>{'<'} </span>
-          <span className={'month'}>{MONTHS[date.getMonth() === 0 ? 11 : date.getMonth() - 1]}</span>
+          <span className={'month'}>previous</span>
         </div>
 
         <div className={'monthAndYear'}>
@@ -48,7 +48,7 @@ const Navigation = ({ date, setDate, setShowingEventForm }) => {
           className={'forward'}
           onClick={() => moveForward()}
         >
-          <span className={'month'}>{MONTHS[date.getMonth() === 11 ? 0 : date.getMonth() + 1]}</span>
+          <span className={'month'}>next</span>
           <span className={'icon'}> {'>'}</span>
         </div>
       </div>

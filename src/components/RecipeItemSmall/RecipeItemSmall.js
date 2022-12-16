@@ -6,6 +6,8 @@ import parse from 'html-react-parser'
 import StyledLink from '../../styled/components/Link.styled'
 import StyledRecipeItemSmall from './RecipeItemSmall.styled'
 import { getRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
+import { setFieldValue } from '../../modules/form/form.actions'
+import { setShowingMealFormAction } from '../../modules/mealPlanner/mealPlanner.actions'
 
 const RecipeItemSmall = ({ recipe }) => {
   const titleToUrl = recipe.title.trim().replace(/\s+/g, '-').toLowerCase()
@@ -21,6 +23,11 @@ const RecipeItemSmall = ({ recipe }) => {
     if (recipeInMyRecipes === undefined) {
       dispatch(getRecipeInfo(id))
     }
+  }
+
+  const addRecipeToMeal = () => {
+    dispatch(setFieldValue('name', recipe.title))
+    dispatch(setShowingMealFormAction(true))
   }
 
   return (
@@ -47,7 +54,20 @@ const RecipeItemSmall = ({ recipe }) => {
             <li><strong>Number of servings:</strong> {recipe.servings}</li>
           </ul>
         </div>
-        <p>{parse(recipe.summary)}</p>
+        <div className={'recipe-summary'}>
+          <p>{parse(recipe.summary)}</p>
+          <StyledLink
+            activeClassName={activeClass}
+            to={'/home'}
+          >
+            <button
+              className={'btn-add'}
+              onClick={addRecipeToMeal}
+            >
+              Add to Meal
+            </button>
+          </StyledLink>
+        </div>
       </div>
     </StyledRecipeItemSmall>
   )

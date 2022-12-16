@@ -19,8 +19,9 @@ const MealPlanner = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const { meals } = useSelector((state) => state.mealPlanner)
+  const { meals, isMealFormVisible } = useSelector((state) => state.mealPlanner)
   console.log(meals)
+  // const [showingMealForm, setShowingMealForm] = React.useState({ visible: isMealFormVisible })
 
   const currentDate = toStartOfDay(new Date())
   // const data = mealPlannerAPI.load()
@@ -33,35 +34,9 @@ const MealPlanner = () => {
         month={currentDate.getMonth() + 1}
         year={currentDate.getFullYear()}
         preloadedMeals={meals}
-        /* preloadedMeals={[
-          {
-            id: 1,
-            menu: [
-              'Eggs Benedict',
-              'Banoffee'
-            ],
-            date: '2022-12-12',
-            note: SAMPLE_META,
-            type: 'Breakfast'
-          },
-          {
-            id: 2,
-            menu: [
-              'Apple'
-            ],
-            date: '2022-12-14',
-            note: SAMPLE_META,
-            type: 'Elevenses'
-          },
-          {
-            id: 3,
-            name: 'Meeting',
-            dateFrom: '2022-12-01T09:45',
-            dateTo: '2022-12-04T22:00',
-            meta: SAMPLE_META,
-            type: 'Standard'
-          }
-        ]} */
+        isMealFormVisible={isMealFormVisible}
+        // showingMealForm={showingMealForm}
+        // setShowingMealForm={setShowingMealForm}
       />
       <DailyMealPlan />
     </StyledMealPlanner>
