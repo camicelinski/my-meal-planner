@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const StyledPagLink = styled(NavLink)`
   &.${props => props.activeClassName} {
-    color: #60a3bc;
+    color: var(--btn-theme-hover);
     font-weight: bold;
   }
 `
@@ -27,7 +27,7 @@ const StyledPaginationRoute = styled.nav`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #f2f2f2;
+  background-color: var(--bg-cell);
 }
 
 & li {  
@@ -37,11 +37,11 @@ const StyledPaginationRoute = styled.nav`
 
   & a {
     text-decoration: none;
-    color: black;
+    color: var(--text-primary);
     padding-bottom: 4px;
 
     &:hover {
-      color: #82ccdd;
+      color: var(--color-theme-hover);
       transition: 0.1s;
     }    
   }  

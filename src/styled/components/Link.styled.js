@@ -2,15 +2,16 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
 const StyledLink = styled(NavLink)`
-    color: #444;
+    color: var(--text-secondary);
     text-decoration: none;
 
     &:hover {
-      color: #60a3bc;
+      color: var(--btn-theme-hover);
+      text-decoration: none;
     }
 
     &.${props => props.activeClassName} {
-      color: #60a3bc;
+      color: var(--btn-theme-hover);
       font-weight: bold;
     }
 `

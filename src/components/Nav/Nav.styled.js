@@ -23,13 +23,14 @@ const StyledNav = styled.nav`
       text-align: right;
       width: 100vw;
       margin-top: 0;
+      margin-left: 0;
       padding: 2rem;
-      background-color: #f2f2f2;
+      background-color: var(--bg-input);
       position: absolute;
       top: 0;
       right: 0;
       gap: 0;
-      transform: ${({ open }) => open ? 'translateX(2rem)' : 'translateX(100%)'};
+      transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
       transition: transform 0.3s ease-in-out;
     }    
 
@@ -41,7 +42,7 @@ const StyledNav = styled.nav`
         width: 50%;
         padding: 1rem;
         text-align: center;
-        border-bottom: 1px dotted #82ccdd;
+        border-bottom: 1px dotted var(--color-theme-hover);
 
         :last-child {
           border: none;
