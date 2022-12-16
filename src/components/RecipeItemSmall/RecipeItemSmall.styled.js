@@ -32,10 +32,11 @@ const StyledRecipeItemSmall = styled.div`
   }
 
   p {
-    width: 60%;
-    margin-left: 15px;
+    width: 55%;
+    margin-left: 30px;
     text-align: justify;
     font-size: 0.9rem;
+    line-height: 1.25rem;
   }
 
   ul {

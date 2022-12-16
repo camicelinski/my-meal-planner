@@ -27,25 +27,18 @@
     },
     {
       "date": "2022-12-18",
-      "type": "elevenses",
-      "name": "Crab Cakes Eggs Benedict",
-      "servings": "2",
-      "note": "",
-      "id": 16
-    },
-    {
-      "date": "2022-12-18",
-      "type": "lunch",
-      "name": "Crab Cakes Eggs Benedict",
-      "servings": "2",
-      "id": 17
-    },
-    {
-      "date": "2022-12-18",
       "type": "lunch",
       "name": "Smoked Salmon Eggs Benedict With Lemon Dill Hollandaise",
       "servings": "2",
       "id": 18
+    },
+    {
+      "date": "2022-12-18",
+      "type": "breakfast",
+      "name": "Maple-Glazed Apple Cookies",
+      "servings": "2",
+      "note": "Cookies for Matim",
+      "id": 19
     }
   ],
   "recipes": [

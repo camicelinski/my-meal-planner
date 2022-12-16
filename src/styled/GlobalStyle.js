@@ -12,7 +12,8 @@ const GlobalStyle = createGlobalStyle`
     --meal-lunch: #C0392B;
     --meal-snacks: #D35400;
     --meal-dinner: #F39C12;
-    --color-theme: #c0392b; 
+    --color-title: #A7220D;
+    --color-theme: #C0392B; 
     --color-theme-hover: #ECB2AC;
     --btn-theme-hover: #D55648;
     --radius-primary: 12px;

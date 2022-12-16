@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
 const StyledApp = styled.div`
-  margin: 20px;
+  .content-wrapper {
+    min-height: calc(100vh - 40px);
+  }
 `
 
 export default StyledApp
