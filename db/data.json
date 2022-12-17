@@ -60,6 +60,13 @@
       "name": "The Best Chili",
       "servings": "2",
       "id": 22
+    },
+    {
+      "date": "2022-12-20",
+      "type": "dinner",
+      "name": "Barbecued Shrimp & Grits",
+      "servings": "2",
+      "id": 23
     }
   ],
   "recipes": [
