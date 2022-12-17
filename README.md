@@ -6,7 +6,7 @@ My Meal Planner App is a weekly **React calendar** with **local API** (JSON Serv
 
 &nbsp;
 
-### :bulb: Features
+## :bulb: Features
 
 - **add meals** with the specification of:
     - date
@@ -16,11 +16,11 @@ My Meal Planner App is a weekly **React calendar** with **local API** (JSON Serv
     - note
 - form fields are **validated**
 - **remove meals**
-- renderd **meals** are sorted by order and by date
+- **meals** are sorted by order and rendered by date
 - meals are saved/removed using **local API** (JSON Server)
 - navigation through different pages using **React Router**
 - **get recipes** from [**spoonacular API**](https://spoonacular.com/food-api)
-- **save recipes** using **local API** (JSON Server) and **add them to a meal**
+- **save recipes** using **local API** (JSON Server) and **add** them to a meal
 - **recipe page** with the specification of:
     - title
     - picture
@@ -83,7 +83,8 @@ The project uses [node](https://nodejs.org/en/), [npm](https://www.npmjs.com/) a
 ## 🔗 Useful resources
 
 - [official React website](https://reactjs.org/docs/getting-started.html)
-- [50 Gorgeous Color Schemes From Award-Winning Websites](https://visme-co.translate.goog/blog/website-color-schemes/?_x_tr_sl=en&_x_tr_tl=pl&_x_tr_hl=pl&_x_tr_pto=op,sc) - for design inspiration
+- [React Calendar Component Example](https://justacoding.blog/react-calendar-component-example-with-events/)
+- [Mobiscroll](https://demo.mobiscroll.com/react/eventcalendar)
 
 &nbsp;
 
