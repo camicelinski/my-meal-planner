@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
+import StyledModal from './Modal.styled'
 
 // Generic component - modal to present children within
 const Modal = ({ children, onClose, title, className }) => {
   return (
-    <>
+    <StyledModal>
       <div
         className={'overlay'}
         onClick={onClose}
@@ -18,7 +19,7 @@ const Modal = ({ children, onClose, title, className }) => {
           {children}
         </div>
       </div>
-    </>
+    </StyledModal>
   )
 }
 

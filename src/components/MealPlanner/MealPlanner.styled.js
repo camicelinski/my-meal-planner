@@ -233,7 +233,7 @@ const StyledMealPlanner = styled.div`
     background: #c82727;
     border-bottom: 3px solid #a51616;
   }
-
+/*
   .overlay {
     background-color: rgba(0, 0, 0, 0.7);
     position: fixed;
@@ -309,7 +309,7 @@ const StyledMealPlanner = styled.div`
   .eventModal button.red {
     margin-top: 8px;
   }
-
+*/
   .feedback {
       position: absolute;
       width: 90%;

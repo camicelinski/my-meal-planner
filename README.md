@@ -2,7 +2,7 @@
 
 ### My Meal Planner :calendar:
 
-My Meal Planner App is a weekly **React calendar** with **local API** (JSON Server) as a database to manage meals and recipes. The calendar is rendered from the database and contains a form to submit new meals. Besides that, user can get recipes from [**spoonacular API**](https://spoonacular.com/food-api), save them to the database and add them to a meal.
+My Meal Planner App is a weekly **React calendar** with **local API** (JSON Server) as a database to manage meals and recipes. The calendar is rendered from the database and contains a form to submit new meals, generating daily meal plans. Besides that, user can get recipes from [**spoonacular API**](https://spoonacular.com/food-api), save them to the database and add them to a meal.
 
 &nbsp;
 
@@ -77,12 +77,20 @@ The project uses [node](https://nodejs.org/en/), [npm](https://www.npmjs.com/) a
 
   http://localhost:3000/
 
+&nbsp;
+
+## :bulb: Further development
+
+- generate **grocery list** with products divided by aisles
+- add recipe **manually** 
+- **edit** meals and recipes
+- testing
 
 &nbsp;
 
 ## 🔗 Useful resources
 
-- [official React website](https://reactjs.org/docs/getting-started.html)
+- [Official React website](https://reactjs.org/docs/getting-started.html)
 - [React Calendar Component Example](https://justacoding.blog/react-calendar-component-example-with-events/)
 - [Mobiscroll](https://demo.mobiscroll.com/react/eventcalendar)
 
