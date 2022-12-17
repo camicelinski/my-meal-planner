@@ -57,6 +57,28 @@ const Recipes = () => {
     // const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(phrase.toLowerCase())
   }
 
+  const renderfilteredRecipes = () => {
+    const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(phrase.toLowerCase()))
+
+    if (filteredRecipes.length > 0) {
+      return (
+        <Pagination
+          path={pageUrl}
+          limit={5}
+        >
+          {filteredRecipes.map((recipe) => (
+            <RecipeItemSmall
+              key={recipe.id}
+              recipe={recipe}
+            />
+          ))}
+        </Pagination>
+      )
+    } else {
+      return <p className={'no-results'}>No results found.</p>
+    }
+  }
+
   return (
     <StyledRecipes>
       <section className={'controls'}>
@@ -85,23 +107,7 @@ const Recipes = () => {
         </div>
       </section>
       <Route path={`${pageUrl}/:page`}>
-        {recipes &&
-            (
-              <Pagination
-                path={pageUrl}
-                limit={5}
-              >
-                {recipes && (
-                  recipes.filter(recipe => recipe.title.toLowerCase().includes(phrase.toLowerCase())).map((recipe) => (
-                    <RecipeItemSmall
-                      key={recipe.id}
-                      recipe={recipe}
-                    />
-                  ))
-                )}
-              </Pagination>
-            )
-        }
+        {renderfilteredRecipes()}
       </Route>
     </StyledRecipes>
   )

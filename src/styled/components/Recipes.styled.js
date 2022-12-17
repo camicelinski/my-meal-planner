@@ -73,6 +73,11 @@ const StyledRecipes = styled.main`
   .btn:hover {
     background: var(--btn-theme-hover);
   }
+
+  .no-results {
+    margin-top: 45px;
+    text-align: center;
+  }
 `
 
 export default StyledRecipes

@@ -33,6 +33,26 @@ const FindRecipe = () => {
     setPhrase(e.target.value)
   }
 
+  const renderRecipes = () => {
+    if (recipes.length > 0) {
+      return (
+        <Pagination
+          path={pageUrl}
+          limit={5}
+        >
+          {recipes.map((recipe) => (
+            <RecipeItemSmall
+              key={recipe.id}
+              recipe={recipe}
+            />
+          ))}
+        </Pagination>
+      )
+    } else {
+      return <p className={'no-results'}>No results found.</p>
+    }
+  }
+
   return (
     <StyledRecipes>
       <section className={'controls'}>
@@ -59,21 +79,7 @@ const FindRecipe = () => {
         </div>
       </section>
       <Route path={`${pageUrl}/:page`}>
-        {recipes && (
-          <Pagination
-            path={pageUrl}
-            limit={5}
-          >
-            {recipes && (
-              recipes.map((recipe) => (
-                <RecipeItemSmall
-                  key={recipe.id}
-                  recipe={recipe}
-                />
-              ))
-            )}
-          </Pagination>
-        )}
+        {renderRecipes()}
       </Route>
     </StyledRecipes>
   )

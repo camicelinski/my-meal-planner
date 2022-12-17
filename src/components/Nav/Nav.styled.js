@@ -18,6 +18,7 @@ const StyledNav = styled.nav`
     font-size: 0.9rem;
 
     @media screen and (max-width: 768px) {
+      display: ${({ open }) => open ? 'flex' : 'none'};
       flex-direction: column;
       justify-content: center;
       text-align: right;
@@ -29,7 +30,7 @@ const StyledNav = styled.nav`
       position: absolute;
       top: 0;
       right: 0;
-      gap: 0;
+      gap: 0;      
       transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
       transition: transform 0.3s ease-in-out;
     }    
