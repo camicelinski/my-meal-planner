@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     --meal-breakfast: #2980B9;
     --meal-elevenses: #27AE60;
     --meal-lunch: #C0392B;
-    --meal-snacks: #D35400;
+    --meal-snacks: #F56200;
     --meal-dinner: #F39C12;
     --color-title: #A7220D;
     --color-theme: #C0392B; 

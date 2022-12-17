@@ -1,15 +1,11 @@
 import styled from 'styled-components'
 
 const StyledHeader = styled.header`
-  // margin: 30px auto;
   text-align: left;
   
   .header {
     display: flex;
     justify-content: space-between;
-    // height: 360px;
-    // mask-image: linear-gradient(to bottom, transparent 10%, #fff);
-    // -webkit-mask-image: linear-gradient(to top, transparent 20%, #fff);
   }
 
   .h1-container {
@@ -18,18 +14,33 @@ const StyledHeader = styled.header`
     justify-content: center;
     margin-left: 70px;
     width: 55%;
-    // position: absolute;
   }
 
   h1 {        
     font-family: 'Rubik', Arial, sans-serif;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.4rem;
+    color: var(--text-white);
+    margin: 5px 0 10px;
+    padding: 15px 0;
+  }
+
+  .h1-red {    
     color: var(--color-title);
     border-bottom: 1px dotted var(--color-theme-hover);
-    margin: 35px 0 10px;
-    padding: 15px 0;
-    // color: var(--bg-primary);
+  }
+
+  @media screen and (min-width: 768px) {
+    h1 {        
+      font-size: 3rem;
+      color: var(--color-title);
+      border-bottom: 1px dotted var(--color-theme-hover);
+      margin: 35px 0 10px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    
   }
 `
 

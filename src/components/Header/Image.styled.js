@@ -14,14 +14,19 @@ const StyledImage = styled.img`
     top: 0;
     right: 0;
     z-index: -99;
-    width: 546px;
-    height: 270px;
-    // -radius: 50%;
-    // height: 135px;
+    width: 409.5px;
+    height: 202.5px;
   }
 
   &.hidden {
     display: none;
+  }
+
+  @media screen and (min-width: 1024px) {
+    &.bg {
+      width: 546px;
+      height: 270px;
+    }
   }
 `
 

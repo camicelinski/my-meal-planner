@@ -81,8 +81,8 @@ The project uses [node](https://nodejs.org/en/), [npm](https://www.npmjs.com/) a
 
 ## :bulb: Further development
 
-- generate **grocery list** with products divided by aisles
-- add recipe **manually** 
+- generate **grocery list** ready for shopping
+- option to add recipes **manually** 
 - **edit** meals and recipes
 - testing
 

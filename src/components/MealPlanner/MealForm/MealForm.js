@@ -77,11 +77,13 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
     const err = validateForm(values)
     setErrors(err)
     if (err.length === 0) {
+      setIsLoading(true)
       // dispatch(addRow(valuesForTableRow))
       // dispatch(pushRowsToLS())
       mealPlannerAPI.add('/meals', values).then(() => dispatch(getMyMeals()))
       dispatch(clearFields())
       setShowingMealForm({ visible: false })
+      setIsLoading(false)
     }
   }
 
@@ -134,22 +136,3 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
 }
 
 export default MealForm
-
-/*
-<label>Menu
-          <input
-            type={'text'}
-            placeholder={'e.g. pasta'}
-            defaultValue={meal.menu}
-            onChange={(e) => setMeal({ ...meal, menu: e.target.value })}
-          />
-        </label>
-
-        <input
-            type={'text'}
-            placeholder={'e.g. pasta'}
-            // defaultValue={meal.name}
-            // onChange={(e) => setMeal({ ...meal, menu: e.target.value })}
-            onChange={handleChange}
-          />
-*/

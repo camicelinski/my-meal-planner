@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 const StyledRecipeItemSmall = styled.div`
-  // max-width: 1024px;
-  // margin: 0 auto;
   padding: 20px 40px;
 
   a {    
@@ -17,24 +15,38 @@ const StyledRecipeItemSmall = styled.div`
 
   h2 {
     font-family: 'Rubik', Arial, sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     margin-bottom: 15px;
-    // letter-spacing: 0.1rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.8rem;
+    }
   }
 
   .recipe-container {
-    display: flex;
-    // justify-content: center;
+    @media screen and (min-width: 768px) {
+      display: flex;
+    }  
   }
 
   .img-section {
-    width: 40%;
-    max-width: 312px;
+    width: 100%;
+    margin-bottom: 10px;
+
+    @media screen and (min-width: 768px) {
+      width: 40%;
+      max-width: 312px;
+      margin-bottom: 0;
+    }
   }
 
   .recipe-summary {
-    width: 55%;
-    margin-left: 30px;
+    width: 100%;    
+
+    @media screen and (min-width: 768px) {
+      width: 55%;
+      margin-left: 30px;
+    }
   }
 
   p {
@@ -59,15 +71,20 @@ const StyledRecipeItemSmall = styled.div`
 
   img {
     width: 100%;
-    // height: 100%;
     border-radius: var(--radius-primary);
     object-fit: cover;
   }
 
-  .btn-add {
-    margin-top: 12px;
+  .btn-container {
+    display: flex;
+    justify-content: left;
+  }
+
+  .btn-container .btn {
     width: fit-content;
-    padding: 8px 20px;border: 0;
+    margin-top: 12px;
+    padding: 8px;
+    border: 0;
     color: var(--bg-primary);
     border-radius: var(--radius-secondary);
     font-size: 0.8rem;
@@ -76,8 +93,12 @@ const StyledRecipeItemSmall = styled.div`
     cursor: pointer;
   }
 
-  .btn-add:hover {
+  .btn-container .btn:hover {
     background: var(--btn-theme-hover);
+  }
+
+  .hidden {
+    display: none;
   }
 `
 

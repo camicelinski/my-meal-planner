@@ -4,12 +4,13 @@ const StyledNotFound = styled.p`
     text-align: center;
 
     a {
-      color: #60a3bc;
+      color: var(--color-theme);
       font-weight: bold;
     }
 
     a:hover {
-      color: #3c6382;
+      color: var(--color-theme-hover);
+      text-decoration: none;
     }    
 `
 

@@ -8,7 +8,6 @@ const MealSmallIcon = ({ meal, setViewingMeal }) => {
   return (
     <div
       className={`miniEvent ${meal.type ? meal.type.toLowerCase() : 'standard'}`}
-      onClick={() => setViewingMeal(meal)}
     >
     </div>
   )

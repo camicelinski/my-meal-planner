@@ -1,33 +1,60 @@
 import styled from 'styled-components'
 
 const StyledDailyMealPlan = styled.div`
-  padding: 10px 30px;
-  margin: auto;
-  width: cal(100% - 40px);
-  max-width: 1024px;
+  padding: 5px;
+  margin: auto;  
+
+  @media screen and (min-width: 768px) {
+    width: cal(100% - 40px);
+    padding: 10px 30px;
+    max-width: 1024px;
+  }
 
   .meal-info {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;    
     align-items: center;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border-calendar);
+    padding: 20px 0;    
+    position: relative;
+
+    @media screen and (min-width: 768px) {
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
   }
 
-  .meal-info:last-child {
-    border-bottom: none;
+  .meal-info-container {
+    border-top: 1px solid var(--border-calendar);
+  }
+
+  .meal-info-container:first-child {
+    border-top: none;
   }
 
   .meal-info .meal-type,
   .meal-info .meal-servings {
     width: 20%;
   }
+  
+  .meal-servings {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+      display: block;
+      font-size: 0.85rem;
+      text-align: right;
+      margin-right: 10px;
+    }
+  }
 
   .meal-type {
-    margin-left: 10px;
     text-transform: uppercase;
     font-size: 0.9rem;
     letter-spacing: 0.05rem;
+
+    @media screen and (min-width: 768px) {
+      margin-left: 10px;
+    }
   }
 
   .meal-note {
@@ -36,7 +63,13 @@ const StyledDailyMealPlan = styled.div`
   }
 
   .meal-info .meal-name-and-note {
-    width: 60%;
+    width: 100%;
+    margin-right: 30px;
+
+    @media screen and (min-width: 768px) {
+      width: 60%;      
+      margin-right: 0;
+    }
   }
 
   .breakfast {
@@ -59,14 +92,15 @@ const StyledDailyMealPlan = styled.div`
     color: var(--meal-dinner);
   }
 
-  .meal-servings {
-    font-size: 0.85rem;
-    text-align: right;
-    margin-right: 10px;
-  }
-
   .deleteMealItem {
-    margin-left: 12px;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+
+    @media screen and (min-width: 768px) {
+      position: static;
+      margin-left: 12px;
+    }
   }
 
   .btn.deleteMeal {
@@ -87,9 +121,7 @@ const StyledDailyMealPlan = styled.div`
 
   button {
     width: 100%;
-    // background: #3fb73f;
     border: 0;
-    // border-bottom: 3px solid green;
     color: var(--text-secondary);
     padding: 10px;
     cursor: pointer;
@@ -109,7 +141,6 @@ const StyledDailyMealPlan = styled.div`
   }
 
   .btn-remove {
-    // margin-top: 8px;
     color: var(--text-white);
     background-color: var(--color-theme);
     transition: var(--transition-style);
@@ -127,84 +158,6 @@ const StyledDailyMealPlan = styled.div`
     width: 30%;
     left: 35%;
   }
-
-/*
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .modal {
-    background: var(--bg-primary);
-    position: absolute;
-    width: 50%;
-    text-align: center;
-    left: 25%;
-    top: -180px;
-    border-radius: var(--radius-primary);
-  }
-
-  .modal .inner {
-    padding: 20px 30px 30px 30px;
-  }
-
-  .modal h3 {
-    margin: 0;
-    background: var(--color-theme-hover);
-    padding: 12px;
-    border-top-left-radius: var(--radius-primary);-moz-border-radius-top-left: var(--radius-primary);
-    -webkit-border-top-left-radius: var(--radius-primary);
-    border-top-right-radius: var(--radius-primary);-moz-border-radius-top-right: var(--radius-primary);
-    -webkit-border-top-right-radius: var(--radius-primary);
-  }
-
-  .modal p {
-    font-size: 0.8em;
-    line-height: 1.5em;
-  }
-
-  .modal .close {
-    // margin-top: 22px;
-    font-size: 0.7em;
-    background: var(--bg-calendar);
-    color: var(--text-primary);
-    // display: block;
-    transition: var(--transition-style);
-  }
-
-  .modal .close:hover {
-    background: var(--border-calendar);
-  }
-
-  .eventModal p {
-    margin-bottom: 24px;
-  }
-
-  .eventModal p:first-of-type {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  .eventModal .delete {
-    display: block;
-    background: #df3317;
-    border-bottom: 2pxsolid #a90c0c;
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    font-size: 0.8em;
-    border-radius: 3px;
-    margin-bottom: 6px;
-  }
-
-  .eventModal button.red {
-    margin-top: 8px;
-  }
-  */
 `
 
 export default StyledDailyMealPlan

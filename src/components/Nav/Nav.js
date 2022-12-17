@@ -37,7 +37,7 @@ const Nav = () => {
           <li>
             <StyledLink
               activeClassName={activeClass}
-              to={'/grocery-list'}
+              to={'/groceries'}
             >
               Groceries
             </StyledLink>

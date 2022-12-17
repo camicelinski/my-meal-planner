@@ -3,16 +3,19 @@ import styled from 'styled-components'
 const StyledRecipes = styled.main`
   max-width: 1024px;
   margin: 20px auto;
-  // margin: 20px;
 
   .controls {
-    // margin: 0 auto;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     padding: 0 40px;
-    width: 50%;
+    width: 75%;
     max-width: 400px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
+
+    @media screen and (min-width: 768px) {
+      width: 50%;
+      margin-bottom: 30px;
+    }
   }
 
   .search {

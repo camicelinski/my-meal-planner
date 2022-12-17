@@ -14,7 +14,8 @@ export const StyledBurger = styled.button`
   cursor: pointer;
   padding: 0;
   z-index: 10;
-  @media screen and (max-width: 768px) {
+
+  @media screen and (max-width: 767.9px) {
     display: flex;
   } 
   
@@ -25,7 +26,7 @@ export const StyledBurger = styled.button`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ open }) => open ? 'var(--color-theme)' : 'var(--text-white)'};
+    background: ${({ open }) => open ? 'var(--color-theme)' : 'var(--bg-cell)'};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;

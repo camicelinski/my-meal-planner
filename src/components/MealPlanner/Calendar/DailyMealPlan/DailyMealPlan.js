@@ -65,9 +65,11 @@ const DailyMealPlan = () => {
       {sortedCurrentMeals && (
         sortedCurrentMeals.map((meal) => {
           return (
-            <>
+            <div
+              key={`${meal.date}-${meal.id}`}
+              className={'meal-info-container'}
+            >
               <div
-                key={`${meal.date}-${meal.id}`}
                 className={'meal-info'}
               >
                 <h4 className={`meal-type ${meal.type}`}>
@@ -114,7 +116,7 @@ const DailyMealPlan = () => {
                   </div>
                 </Modal>
               )}
-            </>
+            </div>
           )
         })
       )}

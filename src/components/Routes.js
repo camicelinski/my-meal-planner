@@ -8,6 +8,7 @@ import NotFound from '../pages/NotFound'
 import FindRecipe from '../pages/FindRecipe'
 import Recipes from '../pages/Recipes'
 import Recipe from '../pages/Recipe'
+import Groceries from '../pages/Groceries'
 // import CategoryPosts from '../pages/CategoryPosts'
 // import Post from '../pages/Post'
 // import AboutUs from '../pages/AboutUs'
@@ -33,6 +34,10 @@ const Routes = ({ location }) => {
       <Route
         path={'/recipe/:id/:title'}
         component={Recipe}
+      />
+      <Route
+        path={'/groceries'}
+        component={Groceries}
       />
       <Route
         path={'/404.html'}

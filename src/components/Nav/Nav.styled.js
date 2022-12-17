@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 const StyledNav = styled.nav`
-  // background-color: rgba(233,235,236, 0.8);
   margin-bottom: 35px;
   display: flex;
   align-items: center;
@@ -17,7 +16,7 @@ const StyledNav = styled.nav`
     gap: 1.5rem;
     font-size: 0.9rem;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767.9px) {
       display: ${({ open }) => open ? 'flex' : 'none'};
       flex-direction: column;
       justify-content: center;
@@ -33,12 +32,13 @@ const StyledNav = styled.nav`
       gap: 0;      
       transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
       transition: transform 0.3s ease-in-out;
+      z-index: 3;
     }    
 
     li{
       padding: 10px 10px;
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 767.9px) {
         display: block;
         width: 50%;
         padding: 1rem;

@@ -1,32 +1,34 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-// import PostItemSmall from '../components/PostItem/PostItemSmall'
-// import StyledLink from '../styled/components/Link.styled'
 import { useSelector, useDispatch } from 'react-redux'
+
 import Pagination from '../components/Pagination/Pagination'
 import RecipeItemSmall from '../components/RecipeItemSmall'
+import Loader from '../components/General/Loader'
+
 import StyledLink from '../styled/components/Link.styled'
 import StyledRecipes from '../styled/components/Recipes.styled'
-// import { sortByDate } from '../helpers/sortByDate'
-// import SpoonacularAPI from '../modules/spoonacular/spoonacular.api'
-import { getRecipesList } from '../modules/spoonacular/spoonacular.actions'
+
+import SpoonacularAPI from '../modules/spoonacular/spoonacular.api'
+import { setRecipes } from '../modules/spoonacular/spoonacular.actions'
 
 const FindRecipe = () => {
-  // const { uid } = useParams()
-  // const [documents] = useAllPrismicDocumentsByType('blog_post')
   const { recipes } = useSelector((state) => state.spoonacular)
   const dispatch = useDispatch()
 
-  // const RecipesAPI = new SpoonacularAPI()
-
   const [phrase, setPhrase] = React.useState('')
+  const [isLoading, setIsLoading] = React.useState(false)
+
+  const RecipesAPI = new SpoonacularAPI()
 
   const pageUrl = '/find-recipe'
   const activeClass = 'active'
 
   const getRecipesData = () => {
-    dispatch(getRecipesList(phrase))
-    console.log(recipes)
+    setIsLoading(true)
+    RecipesAPI.getRecipes(phrase)
+      .then((resp) => dispatch(setRecipes(resp.results)))
+      .then(() => setIsLoading(false))
   }
 
   const handleChange = (e) => {
@@ -43,7 +45,7 @@ const FindRecipe = () => {
           {recipes.map((recipe) => (
             <RecipeItemSmall
               key={recipe.id}
-              recipe={recipe}
+              recipeData={recipe}
             />
           ))}
         </Pagination>
@@ -55,6 +57,7 @@ const FindRecipe = () => {
 
   return (
     <StyledRecipes>
+      {isLoading && <Loader />}
       <section className={'controls'}>
         <div className={'search'}>
           <input
@@ -86,36 +89,3 @@ const FindRecipe = () => {
 }
 
 export default FindRecipe
-
-/*
-const CategoryPosts = () => {
-  const { uid } = useParams()
-  const [documents] = useAllPrismicDocumentsByType('blog_post')
-  const pageUrl = `/category/${uid}`
-
-  return (
-    <main>
-      <Route path={`${pageUrl}/:page`}>
-        {documents && (
-          <Pagination
-            path={pageUrl}
-            limit={5}
-          >
-            {documents && (
-              documents.filter((post) =>
-                post.data.categories.map((cat) => {
-                  return cat.category.uid
-                }).includes(uid)).sort(sortByDate).map((post, index) =>
-                  <PostItemSmall
-                    post={post}
-                    key={index}
-                  />
-              )
-            )}
-          </Pagination>
-        )}
-      </Route>
-    </main>
-  )
-}
-*/

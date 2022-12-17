@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 // import { useDispatch } from 'react-redux'
 import Navigation from './Navigation'
 import Loader from '../../General/Loader'
@@ -13,16 +13,10 @@ import Feedback from '../../General/Feedback'
 import { parseEvents } from '../../../helpers/calendarHelpers'
 // import MealPlannerAPI from '../../../modules/mealPlanner/mealPlanner.api'
 // import { clearFields } from '../../../modules/form/form.actions'
-// Sample events calendar build, explained and detailed over at
-// https://justacoding.blog/react-calendar-component-example-with-events/
-
-const { useState, useEffect } = React
 
 // Some config for convenience
 const MOCK_LOADING_TIME = 1000
-// const SAMPLE_META = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 
-// The "main" component, our actual calendar
 const Calendar = ({ month, year, preloadedMeals = [], isMealFormVisible }) => {
   const selectedDate = new Date(year, month - 1)
   const parsedMeals = parseEvents(preloadedMeals)
@@ -78,24 +72,6 @@ const Calendar = ({ month, year, preloadedMeals = [], isMealFormVisible }) => {
 
   }
   */
-
-  const editMeal = (meal) => {
-    setIsLoading(true)
-    setShowingMealForm({ visible: false })
-
-    setTimeout(() => {
-      const parsedMeal = parseEvents([meal])
-
-      const updatedMeals = [...meals].map(updatedMeal => {
-        return updatedMeal.id === meal.id ? parsedMeal[0] : updatedMeal
-      })
-
-      setMeals(updatedMeals)
-      setIsLoading(false)
-      showFeedback({ message: 'Meal edited successfully', type: 'success' })
-    }, MOCK_LOADING_TIME)
-  }
-
   const deleteMeal = (meal) => {
     setIsLoading(true)
     setViewingMeal(null)
@@ -157,8 +133,8 @@ const Calendar = ({ month, year, preloadedMeals = [], isMealFormVisible }) => {
           withMeal={showingMealForm.withMeal}
           preselectedDate={showingMealForm.preselectedDate}
           setShowingMealForm={setShowingMealForm}
+          setIsLoading={setIsLoading}
           // addMeal={addMeal}
-          editMeal={editMeal}
           setViewingMeal={setViewingMeal}
           // errors={errors}
         />

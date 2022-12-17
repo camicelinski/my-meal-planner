@@ -20,7 +20,6 @@ const StyledRecipeItem = styled.div`
     font-family: 'Rubik', Arial, sans-serif;
     font-size: 1.5rem;
     margin-bottom: 10px;
-    // letter-spacing: 0.1rem;
   }
 
   h4 {
@@ -33,16 +32,29 @@ const StyledRecipeItem = styled.div`
   }
 
   .ingredients-instructions {
-    display: flex;
+    margin-left: 10px;
+
+    @media screen and (min-width: 768px) {
+      display: flex;
+    }
   }
 
   .ingredients {
-    width: 35%;
-    margin-right: 15px;
-  }
+    padding-bottom: 5px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--color-theme-hover);
+
+    @media screen and (min-width: 768px) {
+      width: 35%;
+      margin-right: 15px;
+      border-bottom: none;
+    }
+  } 
 
   .instructions {
-    width: 65%;
+    @media screen and (min-width: 768px) {
+      width: 65%;
+    }
   }
 
   .ingredients-list,
@@ -95,15 +107,12 @@ const StyledRecipeItem = styled.div`
   .img-container {
     width: 35%;
     margin-right: 15px;
-    // height: 231px;
-    // border-radius: 50%;
     display: flex;
     justify-content: center;
   }
 
   img {
     width: 100%;
-    // height: 100%;
     border-radius: var(--radius-primary);
     object-fit: cover;
   }

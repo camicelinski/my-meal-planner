@@ -16,7 +16,7 @@ const Header = () => {
     <StyledHeader>
       <div className={'header'}>
         <div className={'h1-container'}>
-          <h1>My Meal Planner</h1>
+          <h1 className={isRecipePage(location) ? 'h1-red' : ''}>My Meal Planner</h1>
           <Nav />
         </div>
         <StyledImage
