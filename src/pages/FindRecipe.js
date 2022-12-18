@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Pagination from '../components/Pagination/Pagination'
@@ -17,7 +18,8 @@ const FindRecipe = () => {
   const dispatch = useDispatch()
 
   const [phrase, setPhrase] = React.useState('')
-  const [isLoading, setIsLoading] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(true)
+  const [error, setError] = React.useState(null)
 
   const RecipesAPI = new SpoonacularAPI()
 
@@ -26,17 +28,44 @@ const FindRecipe = () => {
 
   React.useEffect(() => {
     window.scrollTo(0, 0)
+    RecipesAPI.getRecipes(phrase)
+      .catch((error) => {
+        console.log(error)
+        setError(error)
+        setIsLoading(false)
+        dispatch(setRecipes([]))
+      })
+      .then((resp) => {
+        if (resp) {
+          dispatch(setRecipes(resp.results))
+          setIsLoading(false)
+        }
+      })
   }, [])
 
   const getRecipesData = () => {
+    setError(null)
     setIsLoading(true)
     RecipesAPI.getRecipes(phrase)
-      .then((resp) => dispatch(setRecipes(resp.results)))
-      .then(() => setIsLoading(false))
+      .catch((error) => {
+        console.log(error)
+        setError(error)
+        setIsLoading(false)
+      })
+      .then((resp) => {
+        if (resp) {
+          dispatch(setRecipes(resp.results))
+          setIsLoading(false)
+        }
+      })
   }
 
   const handleChange = (e) => {
     setPhrase(e.target.value)
+  }
+
+  const renderError = () => {
+    return <p className={'error-server'}>Something went wrong. Try again or return to <Link to={'/'}>home.</Link></p>
   }
 
   const renderRecipes = () => {
@@ -54,7 +83,7 @@ const FindRecipe = () => {
           ))}
         </Pagination>
       )
-    } else {
+    } else if (!error) {
       return <p className={'no-results'}>No results found.</p>
     }
   }
@@ -86,6 +115,7 @@ const FindRecipe = () => {
         </div>
       </section>
       <Route path={`${pageUrl}/:page`}>
+        {error && renderError()}
         {renderRecipes()}
       </Route>
     </StyledRecipes>

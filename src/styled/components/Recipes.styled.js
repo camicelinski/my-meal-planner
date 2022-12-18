@@ -76,6 +76,11 @@ const StyledRecipes = styled.main`
     margin-top: 45px;
     text-align: center;
   }
+
+  .error-server {
+    text-align: center;
+    margin-top: 50px;
+  }
 `
 
 export default StyledRecipes

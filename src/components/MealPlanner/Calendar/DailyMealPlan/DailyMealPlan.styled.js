@@ -149,15 +149,6 @@ const StyledDailyMealPlan = styled.div`
   .btn-remove:hover {
     background-color: var(--btn-theme-hover);
   }
-
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-
-  .modal {
-    width: 30%;
-    left: 35%;
-  }
 `
 
 export default StyledDailyMealPlan

@@ -29,6 +29,13 @@ const StyledModal = styled.div`
 
   .delete-confirmation {
     top: 25%;
+    width: 70%;
+    left: 15%;
+
+    @media screen and (min-width: 768px) {
+      width: 50%;      
+      left: 25%;
+    }
   }
 
   .modal .inner {

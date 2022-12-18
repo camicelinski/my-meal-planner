@@ -138,6 +138,11 @@ const StyledRecipeItem = styled.div`
     font-size: 0.8rem;
   }
 
+  .error-server {
+    text-align: center;
+    margin-top: 50px;
+  }
+
   .hidden {
     display: none;
   }

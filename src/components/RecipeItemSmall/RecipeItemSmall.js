@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import parse from 'html-react-parser'
 
 import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api'
-import { getRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
+// import { getRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
 import { setFieldValue } from '../../modules/form/form.actions'
 import { setShowingMealFormAction } from '../../modules/mealPlanner/mealPlanner.actions'
 
@@ -24,13 +24,13 @@ const RecipeItemSmall = ({ recipeData }) => {
 
   useEffect(() => {
   }, [recipes])
-
+  /*
   const getRecipeData = (id) => {
     const recipeInMyRecipes = recipes.find(recipe => recipe.id.toString() === id.toString())
     if (recipeInMyRecipes === undefined) {
       dispatch(getRecipeInfo(id))
     }
-  }
+  } */
 
   const addRecipeToMyRecipes = () => {
     mealPlannerAPI.add('/recipes', recipeData)
@@ -47,7 +47,7 @@ const RecipeItemSmall = ({ recipeData }) => {
       <StyledLink
         activeClassName={activeClass}
         to={`/recipe/${recipeData.id}/${titleToUrl}`}
-        onClick={() => getRecipeData(recipeData.id)}
+        // onClick={() => getRecipeData(recipeData.id)}
       >
         <h2>
           {recipeData.title}

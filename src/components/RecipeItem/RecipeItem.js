@@ -2,11 +2,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+
+import Loader from '../General/Loader'
 
 import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api'
 import { setFieldValue } from '../../modules/form/form.actions'
 import { setShowingMealFormAction } from '../../modules/mealPlanner/mealPlanner.actions'
+import { getRecipeInfo, setRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
 
 import StyledRecipeItem from './RecipeItem.styled'
 import StyledLink from '../../styled/components/Link.styled'
@@ -18,6 +21,8 @@ const RecipeItem = () => {
   const { recipes } = useSelector((state) => state.mealPlanner)
 
   const [recipeData, setRecipeData] = React.useState(recipe)
+  const [isLoading, setIsLoading] = React.useState(true)
+  const [error, setError] = React.useState(null)
 
   const dispatch = useDispatch()
 
@@ -27,10 +32,22 @@ const RecipeItem = () => {
   const activeClass = 'active'
 
   React.useEffect(() => {
+    const recipeInMyRecipes = recipes.find(recipe => recipe.id.toString() === id.toString())
+
     if (recipeInMyRecipes !== undefined) {
       setRecipeData(recipeInMyRecipes)
     } else {
-      setRecipeData(recipe)
+      dispatch(getRecipeInfo(id))
+        .catch((error) => {
+          console.log(error)
+          setError(error)
+          setIsLoading(false)
+        })
+        .then((resp) => {
+          dispatch(setRecipeInfo(resp))
+          setRecipeData(resp)
+          setIsLoading(false)
+        })
     }
   }, [recipe || recipeData])
 
@@ -94,8 +111,14 @@ const RecipeItem = () => {
     }
   }
 
+  const renderError = () => {
+    return <p className={'error-server'}>Something went wrong. Try again or return to <Link to={'/'}>home.</Link></p>
+  }
+
   return (
     <StyledRecipeItem>
+      {isLoading && <Loader />}
+      {error && renderError()}
       {recipeData && (
         <div>
           <div className={'recipe-header'}>
