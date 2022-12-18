@@ -1,14 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Pagination from '../components/Pagination/Pagination'
 import RecipeItemSmall from '../components/RecipeItemSmall'
+import Loader from '../components/General/Loader'
 
 import StyledLink from '../styled/components/Link.styled'
 import StyledRecipes from '../styled/components/Recipes.styled'
 
-import { getRecipesList } from '../modules/spoonacular/spoonacular.actions'
+import SpoonacularAPI from '../modules/spoonacular/spoonacular.api'
+import { setRecipes } from '../modules/spoonacular/spoonacular.actions'
 import { getMyRecipes } from '../modules/mealPlanner/mealPlanner.actions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,17 +22,23 @@ const Recipes = () => {
   const dispatch = useDispatch()
 
   const [phrase, setPhrase] = React.useState('')
+  const [isLoading, setIsLoading] = React.useState(false)
+
+  const RecipesAPI = new SpoonacularAPI()
 
   const pageUrl = '/recipes'
   const activeClass = 'active'
 
   React.useEffect(() => {
+    window.scrollTo(0, 0)
     dispatch(getMyRecipes())
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const getRecipesData = () => {
-    dispatch(getRecipesList(phrase))
+    setIsLoading(true)
+    RecipesAPI.getRecipes(phrase)
+      .then((resp) => dispatch(setRecipes(resp.results)))
+      .then(() => setIsLoading(false))
   }
 
   const handleChange = (e) => {
@@ -60,6 +69,7 @@ const Recipes = () => {
 
   return (
     <StyledRecipes>
+      {isLoading && <Loader />}
       <section className={'controls'}>
         <div className={'search'}>
           <input

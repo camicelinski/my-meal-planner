@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { MONTHS } from '../../../../helpers/calendarHelpers'
+
 import { setActiveDate } from '../../../../modules/mealPlanner/mealPlanner.actions'
 
 import StyledNavigation from './Navigation.styled'
 
-// Top bar, contains the month/year combo as well as back/forward links
+import { MONTHS } from '../../../../helpers/calendarHelpers'
+
 const Navigation = ({ date, setDate, setShowingEventForm }) => {
   const { activeDate } = useSelector((state) => state.mealPlanner)
-  const dispatch = useDispatch()
 
-  // React.useEffect(() => {
-  // }, [activeDate])
+  const dispatch = useDispatch()
 
   const moveForward = () => {
     const newDate = new Date(activeDate)

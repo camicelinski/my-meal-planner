@@ -8,16 +8,23 @@ const StyledModal = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh;
+    z-index: 98;
   }
 
   .modal {
     background: var(--bg-primary);
     position: absolute;
-    width: 50%;
+    width: 90%;
     text-align: center;
-    left: 25%;
+    left: 5%;
     top: -180px;
     border-radius: var(--radius-primary);
+    z-index: 99;
+
+    @media screen and (min-width: 768px) {
+      width: 50%;      
+      left: 25%;
+    }
   }
 
   .delete-confirmation {
@@ -48,11 +55,9 @@ const StyledModal = styled.div`
   }
 
   .modal .close {
-    // margin-top: 22px;
     font-size: 0.7em;
     background: var(--bg-calendar);
     color: var(--text-primary);
-    // display: block;
     transition: var(--transition-style);
   }
 
@@ -68,22 +73,6 @@ const StyledModal = styled.div`
     margin-top: 0;
     margin-bottom: 0;
   }
-/*
-  .eventModal .delete {
-    display: block;
-    background: #df3317;
-    border-bottom: 2pxsolid #a90c0c;
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    font-size: 0.8em;
-    border-radius: 3px;
-    margin-bottom: 6px;
-  }
-
-  .eventModal button.red {
-    margin-top: 8px;
-  }*/
 `
 
 export default StyledModal

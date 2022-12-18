@@ -15,6 +15,7 @@ const StyledNav = styled.nav`
     justify-content: space-evenly;
     gap: 1.5rem;
     font-size: 0.9rem;
+    font-weight: bold;
 
     @media screen and (max-width: 767.9px) {
       display: ${({ open }) => open ? 'flex' : 'none'};

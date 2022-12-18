@@ -1,14 +1,21 @@
 import React, { useState, useRef } from 'react'
+
+import Burger from './Burger'
+
 import StyledNav from './Nav.styled'
 import StyledLink from './Link.styled'
-import Burger from './Burger'
+
+import { setShowingMealFormAction } from '../../modules/mealPlanner/mealPlanner.actions'
+
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
 const Nav = () => {
+  const [open, setOpen] = useState(false)
+
+  const node = useRef()
+
   const activeClass = 'active'
 
-  const [open, setOpen] = useState(false)
-  const node = useRef()
   useOnClickOutside(node, () => setOpen(false))
 
   return (
@@ -22,6 +29,7 @@ const Nav = () => {
             <StyledLink
               activeClassName={activeClass}
               to={'/home'}
+              onClick={() => setShowingMealFormAction(false)}
             >
               Meals
             </StyledLink>

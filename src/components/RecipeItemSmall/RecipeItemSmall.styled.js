@@ -62,11 +62,8 @@ const StyledRecipeItemSmall = styled.div`
 
   .img-container {
     width: 100%;
-    // height: 231px;
-    // border-radius: 50%;
     display: flex;
     justify-content: center;
-
   }
 
   img {

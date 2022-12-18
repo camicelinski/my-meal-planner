@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 const StyledMealSmallIcon = styled.div`  
   .miniEvent {
-    background: #1f86ef;
     color: white;
     padding: 3px;
     margin: 2px;

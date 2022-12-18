@@ -3,27 +3,26 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import parse from 'html-react-parser'
 
-import StyledLink from '../../styled/components/Link.styled'
-import StyledRecipeItemSmall from './RecipeItemSmall.styled'
 import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api'
 import { getRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
 import { setFieldValue } from '../../modules/form/form.actions'
 import { setShowingMealFormAction } from '../../modules/mealPlanner/mealPlanner.actions'
 
+import StyledLink from '../../styled/components/Link.styled'
+import StyledRecipeItemSmall from './RecipeItemSmall.styled'
+
 const RecipeItemSmall = ({ recipeData }) => {
-  const titleToUrl = recipeData.title.trim().replace(/\s+/g, '-').toLowerCase()
-
-  const imageSize = '312x231'
-  const activeClass = 'active'
-
   const { recipes } = useSelector((state) => state.mealPlanner)
-  // const { recipe } = useSelector((state) => state.spoonacular)
+
   const dispatch = useDispatch()
 
   const mealPlannerAPI = new MealPlannerAPI()
 
-  useEffect(() => {
+  const titleToUrl = recipeData.title.trim().replace(/\s+/g, '-').toLowerCase()
+  const imageSize = '312x231'
+  const activeClass = 'active'
 
+  useEffect(() => {
   }, [recipes])
 
   const getRecipeData = (id) => {
@@ -34,9 +33,7 @@ const RecipeItemSmall = ({ recipeData }) => {
   }
 
   const addRecipeToMyRecipes = () => {
-    // dispatch(saveRecipeAction(recipe))
     mealPlannerAPI.add('/recipes', recipeData)
-    // getMyRecipes()
   }
 
   const addRecipeToMeal = () => {
@@ -44,15 +41,6 @@ const RecipeItemSmall = ({ recipeData }) => {
     mealPlannerAPI.add('/recipes', recipeData)
     dispatch(setShowingMealFormAction(true))
   }
-
-  /* const hasInstructions = () => {
-    getRecipeData(recipeData.id)
-    if (recipe.analyzedInstructions[0].steps.length > 0) {
-      return true
-    } else {
-      return false
-    }
-  } */
 
   return (
     <StyledRecipeItemSmall>

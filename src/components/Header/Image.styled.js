@@ -4,8 +4,7 @@ const StyledImage = styled.img`
   border: none;
 
   &.post_img,
-  &.post_small_img,
-  &.about-us_img {
+  &.post_small_img {
     max-width: 100%;
   }
 
@@ -22,7 +21,21 @@ const StyledImage = styled.img`
     display: none;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 520px) {
+    &.bg {
+      width: 546px;
+      height: 270px;
+    }
+  }
+
+  @media screen and (min-width: 620px) {
+    &.bg {
+      width: 655px;
+      height: 324px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
     &.bg {
       width: 546px;
       height: 270px;

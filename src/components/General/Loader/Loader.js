@@ -1,7 +1,7 @@
 import React from 'react'
+
 import StyledLoader from './Loader.styled'
 
-// Generic component - a nicely animated loading spinner
 const Loader = () => {
   return (
     <StyledLoader>

@@ -52,11 +52,6 @@ const StyledRecipes = styled.main`
     z-index: 2;
   }
 
-  .get-new-recipe {
-    // display: flex;    
-    // justify-content: space-between;
-  }
-
   .btn:first-child {
     margin-right: 5px;
   }

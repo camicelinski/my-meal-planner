@@ -4,15 +4,15 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import MealSmallIcon from '../MealSmallIcon'
 
+import { setActiveDate, setShowingMealFormAction } from '../../../../modules/mealPlanner/mealPlanner.actions'
+import { setFieldValue } from '../../../../modules/form/form.actions'
+
 import {
   toStartOfDay,
   findEventsForDate,
   getLastMonday,
   dateToInputFormat
 } from '../../../../helpers/calendarHelpers'
-
-import { setActiveDate } from '../../../../modules/mealPlanner/mealPlanner.actions'
-import { setFieldValue } from '../../../../modules/form/form.actions'
 
 const Grid = ({ date, meals, setViewingMeal, setShowingMealForm, actualDate }) => {
   const { activeDate } = useSelector((state) => state.mealPlanner)
@@ -36,13 +36,12 @@ const Grid = ({ date, meals, setViewingMeal, setShowingMealForm, actualDate }) =
 
   const handleClick = (date) => {
     dispatch(setActiveDate(date))
-    console.log(date)
-    console.log(currentDate)
   }
 
   const addMealOnDate = date => {
     setShowingMealForm({ visible: true, preselectedDate: date })
     dispatch(setFieldValue('date', dateToInputFormat(date)))
+    dispatch(setShowingMealFormAction(true))
   }
 
   return (

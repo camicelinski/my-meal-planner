@@ -1,8 +1,11 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
+
 import Nav from '../Nav'
+
 import StyledHeader from './Header.styled'
 import StyledImage from './Image.styled'
+
 import img from '../../img/my-meal-planner-theme.png'
 
 const Header = () => {

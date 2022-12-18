@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+
 import PaginationRoute from './PaginationRoute'
 
 const Pagination = props => {

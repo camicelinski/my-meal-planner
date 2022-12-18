@@ -4,12 +4,11 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
-import StyledRecipeItem from './RecipeItem.styled'
-
 import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api'
 import { setFieldValue } from '../../modules/form/form.actions'
 import { setShowingMealFormAction } from '../../modules/mealPlanner/mealPlanner.actions'
 
+import StyledRecipeItem from './RecipeItem.styled'
 import StyledLink from '../../styled/components/Link.styled'
 
 const RecipeItem = () => {
@@ -48,6 +47,31 @@ const RecipeItem = () => {
     dispatch(setShowingMealFormAction(true))
   }
 
+  const renderIngredients = () => {
+    if (recipeData.extendedIngredients && recipeData.extendedIngredients.length > 0) {
+      return (
+        <ul className={'ingredients-list'}>
+          {recipeData && (
+            recipeData.extendedIngredients.map((ingredient, index) => {
+              return (
+                <li
+                  className={'ingredient-item'}
+                  key={`${index}-${ingredient.id}`}
+                >
+                  <span className={'amount'}>{Number.isInteger(ingredient.amount) ? ingredient.amount : ingredient.amount.toFixed(1)} </span>
+                  <span className={'unit'}>{ingredient.unit} </span>
+                  <span>{ingredient.name}</span>
+                </li>
+              )
+            })
+          )}
+        </ul>
+      )
+    } else {
+      return <p className={'missing-data'}>This recipe does not provide a list of ingredients.</p>
+    }
+  }
+
   const renderInstructions = () => {
     if (recipeData.analyzedInstructions.length > 0 && recipeData.analyzedInstructions[0].steps && recipeData.analyzedInstructions[0].steps.length > 0) {
       return (
@@ -66,7 +90,7 @@ const RecipeItem = () => {
         </ul>
       )
     } else {
-      return <p>This recipe does not contain instructions.</p>
+      return <p className={'missing-data'}>This recipe does not contain instructions.</p>
     }
   }
 
@@ -113,22 +137,7 @@ const RecipeItem = () => {
           <div className={'ingredients-instructions'}>
             <div className={'ingredients'}>
               <h4>Ingredients:</h4>
-              <ul className={'ingredients-list'}>
-                {recipeData && (
-                  recipeData.extendedIngredients.map((ingredient, index) => {
-                    return (
-                      <li
-                        className={'ingredient-item'}
-                        key={`${index}-${ingredient.id}`}
-                      >
-                        <span className={'amount'}>{Number.isInteger(ingredient.amount) ? ingredient.amount : ingredient.amount.toFixed(1)} </span>
-                        <span className={'unit'}>{ingredient.unit} </span>
-                        <span>{ingredient.name}</span>
-                      </li>
-                    )
-                  })
-                )}
-              </ul>
+              {renderIngredients()}
             </div>
             <div className={'instructions'}>
               <h4>Instructions:</h4>

@@ -2,48 +2,46 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import MealPlannerAPI from '../../../../modules/mealPlanner/mealPlanner.api'
+
 import Modal from '../../../General/Modal'
+
+import MealPlannerAPI from '../../../../modules/mealPlanner/mealPlanner.api'
+import { getMyMeals, getMyRecipes } from '../../../../modules/mealPlanner/mealPlanner.actions'
+
+import StyledDailyMealPlan from './DailyMealPlan.styled'
+import StyledLink from '../../../../styled/components/Link.styled'
+
 import { findEventsForDate } from '../../../../helpers/calendarHelpers'
 import { sortMeals } from '../../../../helpers/helperFunctions'
-// import parse from 'html-react-parser'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-// import { saveRecipeAction } from '../../modules/mealPlanner/mealPlanner.actions'
-import StyledDailyMealPlan from './DailyMealPlan.styled'
-import StyledLink from '../../../../styled/components/Link.styled'
-import { getMyMeals, getMyRecipes } from '../../../../modules/mealPlanner/mealPlanner.actions'
-
 const DailyMealPlan = () => {
   const { meals, recipes, activeDate } = useSelector((state) => state.mealPlanner)
-  console.log(meals)
 
   const [displayConfirmationModal, setDisplayConfirmationModal] = React.useState(false)
+
+  const dispatch = useDispatch()
+
+  const mealPlannerAPI = new MealPlannerAPI()
+
+  const activeClass = 'active'
+  const currentMeals = findEventsForDate(meals, activeDate)
+  const sortedCurrentMeals = sortMeals(currentMeals)
+
+  React.useEffect(() => {
+    dispatch(getMyMeals())
+    dispatch(getMyRecipes())
+  }, [])
 
   const titleToUrl = (name) => {
     return name.trim().replace(/\s+/g, '-').toLowerCase()
   }
 
   const getRecipeId = (title) => {
-    console.log(recipes.filter(recipe => recipe.title.toLowerCase() === title.toLowerCase()).map(recipe => recipe.id))
     return recipes.filter(recipe => recipe.title.toLowerCase() === title.toLowerCase()).map(recipe => recipe.id)
   }
-  const activeClass = 'active'
-
-  const dispatch = useDispatch()
-  const mealPlannerAPI = new MealPlannerAPI()
-
-  React.useEffect(() => {
-    dispatch(getMyMeals())
-    dispatch(getMyRecipes())
-    // mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
-  }, [])
-
-  const currentMeals = findEventsForDate(meals, activeDate)
-  console.log(currentMeals)
-  const sortedCurrentMeals = sortMeals(currentMeals)
-  console.log(sortedCurrentMeals)
 
   const showDeleteModal = () => {
     setDisplayConfirmationModal(true)
@@ -54,11 +52,6 @@ const DailyMealPlan = () => {
     console.log(meals)
     setDisplayConfirmationModal(false)
   }
-  /*
-  const getRecipeId = (name) => {
-    // dispatch(getMyRecipes())
-    const myRecipeID = recipes.filter(recipe => recipe.title.toLowerCase().includes(name.toLowerCase()).map(recipe => recipe.id)
-  } */
 
   return (
     <StyledDailyMealPlan>

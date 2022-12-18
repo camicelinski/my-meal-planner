@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import StyledError from './Error.styled'
 
 export const Error = (props) => {

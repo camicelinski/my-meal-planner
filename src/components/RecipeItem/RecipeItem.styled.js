@@ -133,6 +133,11 @@ const StyledRecipeItem = styled.div`
     background: var(--btn-theme-hover);
   }
 
+  .missing-data {
+    margin-top: 10px;
+    font-size: 0.8rem;
+  }
+
   .hidden {
     display: none;
   }

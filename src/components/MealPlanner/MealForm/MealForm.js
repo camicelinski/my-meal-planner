@@ -2,25 +2,19 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-// import StyledLink from '../../../styled/components/Link.styled'
-import Modal from '../../General/Modal'
+
 import FormField from './FormField'
-// import SpoonacularAPI from '../../../modules/spoonacular/spoonacular.api.js'
-// import RecipesList from '../../RecipesList'
-import validateForm from '../../../helpers/validateForm'
+import Modal from '../../General/Modal'
+
+import MealPlannerAPI from '../../../modules/mealPlanner/mealPlanner.api'
 import { setFieldValue, clearFields } from '../../../modules/form/form.actions'
 import { getMyMeals } from '../../../modules/mealPlanner/mealPlanner.actions'
+
+import validateForm from '../../../helpers/validateForm'
 import { dateToInputFormat } from '../../../helpers/calendarHelpers'
-import MealPlannerAPI from '../../../modules/mealPlanner/mealPlanner.api'
-// import { getCurrentDate } from '../../../helpers/helperFunctions'
+
 import formFields from '../../../data/formFields'
 
-// const RecipesAPI = new SpoonacularAPI()
-
-// Form to add new events or edit existing events
-// In a real implementation, we'd have some frontend
-// validation and also the equivalent in our
-// backend service...
 const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMeal, setViewingMeal, preselectedDate }) => {
   const newMeal = withMeal || {}
   if (!withMeal && !!preselectedDate) {
@@ -28,27 +22,18 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
   }
 
   const values = useSelector((state) => state.form)
-  const mealPlannerAPI = new MealPlannerAPI()
-  const dispatch = useDispatch()
 
-  // const [meal, setMeal] = React.useState(newMeal)
   const [errors, setErrors] = React.useState([])
 
-  // const [recipesData, setRecipesData] = React.useState(null)
-  // const [phrase, setPhrase] = React.useState('')
-  // const activeClass = 'active'
+  const dispatch = useDispatch()
+
+  const mealPlannerAPI = new MealPlannerAPI()
 
   React.useEffect(() => {
     dispatch(getMyMeals())
-    // mealPlannerAPI.load('/meals').then(data => dispatch(loadMealsAction(data)))
   }, [])
 
   const handleInputChange = (e, name, type) => {
-    // const currentDate = getCurrentDate()
-    // if (e.target.name === 'dateOfPurchase' && e.target.value < currentDate) {
-    //  dispatch(getPriceByDate(e.target.value, values.currency))
-    // }
-
     dispatch(setFieldValue(name, e.target.value))
   }
 
@@ -78,8 +63,6 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
     setErrors(err)
     if (err.length === 0) {
       setIsLoading(true)
-      // dispatch(addRow(valuesForTableRow))
-      // dispatch(pushRowsToLS())
       mealPlannerAPI.add('/meals', values).then(() => dispatch(getMyMeals()))
       dispatch(clearFields())
       setShowingMealForm({ visible: false })
@@ -94,7 +77,6 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
     >
       <form
         className={'form'}
-        // onSubmit={handleSubmit}
         noValidate
       >
         {renderFormFields()}

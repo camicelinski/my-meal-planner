@@ -24,6 +24,10 @@ const FindRecipe = () => {
   const pageUrl = '/find-recipe'
   const activeClass = 'active'
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const getRecipesData = () => {
     setIsLoading(true)
     RecipesAPI.getRecipes(phrase)

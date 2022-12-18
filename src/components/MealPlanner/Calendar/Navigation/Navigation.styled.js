@@ -11,14 +11,13 @@ const StyledNavigation = styled.div`
   }
 
   .navigation div {
-      display: inline-block;
-      width: 33.33%;
+    display: inline-block;
+    width: 33.33%;
   }
 
   .navigation .monthAndYear {
     text-align: center;
     color: var(--text-secondary);
-    // font-weight: bold;
   }
 
   .navigation .monthAndYear a {
@@ -35,10 +34,6 @@ const StyledNavigation = styled.div`
   .navigation .monthAndYear .month {
     font-weight: bold;
     font-size: 1.2rem;
-  }
-
-  .navigation .monthAndYear .year {
-    
   }
 
   .navigation .back, 

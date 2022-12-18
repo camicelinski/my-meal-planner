@@ -19,7 +19,6 @@ const formFields = [
       'snacks',
       'dinner'
     ],
-    // regExp: /^[A-Z]$/,
     regExp: /[A-Za-z]+/,
     err: 'select a valid meal type',
     required: true,
@@ -47,7 +46,6 @@ const formFields = [
     name: 'note',
     label: 'Note',
     type: 'text',
-    // regExp: /[A-Za-z]+/,
     err: 'price must be greater than zero',
     required: false
   }

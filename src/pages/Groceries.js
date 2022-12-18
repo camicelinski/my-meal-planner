@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import StyledGroceries from '../styled/components/Groceries.styled'
 
 const Groceries = () => {

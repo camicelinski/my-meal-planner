@@ -2,7 +2,9 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
+
 import Routes from './Routes'
+
 import PageAnimation from '../styled/PageAnimation'
 
 const AnimatedSwitch = ({ location }) => {

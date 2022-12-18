@@ -1,12 +1,17 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { StyledPaginationRoute, StyledPagLink } from '../../styled/components/PaginationRoute.styled'
+
+import {
+  StyledPaginationRoute,
+  StyledPagLink
+} from '../../styled/components/PaginationRoute.styled'
 
 const PaginationRoute = props => {
   const { children, length, path, limit = 1 } = props
 
   const { page } = useParams()
+
   const begin = limit * (page - 1)
   const end = page * limit
 

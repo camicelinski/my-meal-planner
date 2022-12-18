@@ -21,15 +21,6 @@ class SpoonacularAPI {
   _fetch (additionalPath = '') {
     const url = this.url + additionalPath
 
-    // const myHeaders = new Headers()
-    // myHeaders.append('apikey', this.key)
-
-    // const requestOptions = {
-    // method: 'GET',
-    // redirect: 'follow',
-    // headers: myHeaders
-    // }
-
     return fetch(url)
       .then(this.handleErrors)
       .then((resp) => resp.json())

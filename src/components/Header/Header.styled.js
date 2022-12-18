@@ -38,10 +38,6 @@ const StyledHeader = styled.header`
       margin: 35px 0 10px;
     }
   }
-
-  @media screen and (min-width: 1024px) {
-    
-  }
 `
 
 export default StyledHeader

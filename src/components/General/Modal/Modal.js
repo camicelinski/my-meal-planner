@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
+
 import StyledModal from './Modal.styled'
 
-// Generic component - modal to present children within
 const Modal = ({ children, onClose, title, className }) => {
   return (
     <StyledModal>
