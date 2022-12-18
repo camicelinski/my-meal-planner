@@ -15,11 +15,12 @@ import { setRecipes } from '../modules/spoonacular/spoonacular.actions'
 
 const FindRecipe = () => {
   const { recipes } = useSelector((state) => state.spoonacular)
-  const dispatch = useDispatch()
 
   const [phrase, setPhrase] = React.useState('')
   const [isLoading, setIsLoading] = React.useState(true)
   const [error, setError] = React.useState(null)
+
+  const dispatch = useDispatch()
 
   const RecipesAPI = new SpoonacularAPI()
 

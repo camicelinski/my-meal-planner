@@ -5,11 +5,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 
 import Loader from '../General/Loader'
+import Feedback from '../General/Feedback'
 
+import SpoonacularAPI from '../../modules/spoonacular/spoonacular.api'
 import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api'
 import { setFieldValue } from '../../modules/form/form.actions'
 import { setShowingMealFormAction } from '../../modules/mealPlanner/mealPlanner.actions'
-import { getRecipeInfo, setRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
+import { setRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
 
 import StyledRecipeItem from './RecipeItem.styled'
 import StyledLink from '../../styled/components/Link.styled'
@@ -20,29 +22,33 @@ const RecipeItem = () => {
   const { recipe } = useSelector((state) => state.spoonacular)
   const { recipes } = useSelector((state) => state.mealPlanner)
 
-  const [recipeData, setRecipeData] = React.useState(recipe)
+  const [recipeData, setRecipeData] = React.useState(null)
   const [isLoading, setIsLoading] = React.useState(true)
   const [error, setError] = React.useState(null)
+  const [feedback, setFeedback] = React.useState()
+  const [btnDisable, setBtnDisable] = React.useState(false)
 
   const dispatch = useDispatch()
 
   const mealPlannerAPI = new MealPlannerAPI()
+  const RecipesAPI = new SpoonacularAPI()
 
   const imageSize = '312x231'
   const activeClass = 'active'
 
-  React.useEffect(() => {
-    const recipeInMyRecipes = recipes.find(recipe => recipe.id.toString() === id.toString())
+  const recipeInMyRecipes = recipes.find(recipe => recipe.id.toString() === id.toString())
 
+  React.useEffect(() => {
     if (recipeInMyRecipes !== undefined) {
       setRecipeData(recipeInMyRecipes)
       setIsLoading(false)
     } else {
-      dispatch(getRecipeInfo(id))
+      RecipesAPI.getRecipe(id)
         .catch((error) => {
           console.log(error)
           setError(error)
           setIsLoading(false)
+          setRecipeData(null)
         })
         .then((resp) => {
           dispatch(setRecipeInfo(resp))
@@ -50,19 +56,25 @@ const RecipeItem = () => {
           setIsLoading(false)
         })
     }
-  }, [recipe || recipeData])
+  }, [btnDisable])
 
-  const recipeInMyRecipes = React.useMemo(() => {
-    return recipes.find(recipe => recipe.id.toString() === id)
-  }, [])
+  // const recipeInMyRecipes = React.useMemo(() => {
+  //   return recipes.find(recipe => recipe.id.toString() === id)
+  // }, [])
 
   const addRecipeToMyRecipes = () => {
     mealPlannerAPI.add('/recipes', recipe)
+    showFeedback({ message: 'Recipe added successfully', type: 'success' })
+    setBtnDisable(true)
   }
 
   const addRecipeToMeal = () => {
     dispatch(setFieldValue('name', recipeData.title))
     dispatch(setShowingMealFormAction(true))
+
+    if (recipeInMyRecipes === undefined) {
+      mealPlannerAPI.add('/recipes', recipe)
+    }
   }
 
   const renderIngredients = () => {
@@ -116,9 +128,22 @@ const RecipeItem = () => {
     return <p className={'error-server'}>Something went wrong. Try again or return to <Link to={'/'}>home.</Link></p>
   }
 
+  const showFeedback = ({ message, type, timeout = 2000 }) => {
+    setFeedback({ message, type })
+    setTimeout(() => {
+      setFeedback(null)
+    }, timeout)
+  }
+
   return (
     <StyledRecipeItem>
       {isLoading && <Loader />}
+      {feedback &&
+        <Feedback
+          message={feedback.message}
+          type={feedback.type}
+        />
+      }
       {error && renderError()}
       {recipeData && (
         <div>
@@ -146,12 +171,13 @@ const RecipeItem = () => {
                     className={'btn'}
                     onClick={addRecipeToMeal}
                   >
-                    Save and Add to Meal
+                    {recipeInMyRecipes ? 'Add to Meal' : 'Save and Add to Meal'}
                   </button>
                 </StyledLink>
                 <button
                   onClick={addRecipeToMyRecipes}
                   className={recipeInMyRecipes ? 'hidden' : 'btn'}
+                  disabled={btnDisable}
                 >
                   Save for later
                 </button>

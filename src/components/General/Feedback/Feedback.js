@@ -1,13 +1,21 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 
+import StyledFeedback from './Feedback.styled'
+
 const Feedback = ({ message, type }) => {
   return (
-    <div
+    <StyledFeedback
       className={`feedback ${type}`}
     >
-      {message}
-    </div>
+      <div
+        className={'overlay'}
+      >
+      </div>
+      <div className={'modal'}>
+        {message}
+      </div>
+    </StyledFeedback>
   )
 }
 

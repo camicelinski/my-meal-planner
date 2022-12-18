@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import parse from 'html-react-parser'
 
+import Feedback from '../General/Feedback'
+
 import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api'
 // import { getRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
 import { setFieldValue } from '../../modules/form/form.actions'
@@ -13,6 +15,9 @@ import StyledRecipeItemSmall from './RecipeItemSmall.styled'
 
 const RecipeItemSmall = ({ recipeData }) => {
   const { recipes } = useSelector((state) => state.mealPlanner)
+
+  const [feedback, setFeedback] = React.useState()
+  const [btnDisable, setBtnDisable] = React.useState(false)
 
   const dispatch = useDispatch()
 
@@ -34,6 +39,8 @@ const RecipeItemSmall = ({ recipeData }) => {
 
   const addRecipeToMyRecipes = () => {
     mealPlannerAPI.add('/recipes', recipeData)
+    showFeedback({ message: 'Recipe added successfully', type: 'success' })
+    setBtnDisable(true)
   }
 
   const addRecipeToMeal = () => {
@@ -42,8 +49,21 @@ const RecipeItemSmall = ({ recipeData }) => {
     dispatch(setShowingMealFormAction(true))
   }
 
+  const showFeedback = ({ message, type, timeout = 2000 }) => {
+    setFeedback({ message, type })
+    setTimeout(() => {
+      setFeedback(null)
+    }, timeout)
+  }
+
   return (
     <StyledRecipeItemSmall>
+      {feedback &&
+        <Feedback
+          message={feedback.message}
+          type={feedback.type}
+        />
+      }
       <StyledLink
         activeClassName={activeClass}
         to={`/recipe/${recipeData.id}/${titleToUrl}`}
@@ -83,6 +103,7 @@ const RecipeItemSmall = ({ recipeData }) => {
             <button
               onClick={addRecipeToMyRecipes}
               className={recipes.find(r => r.id.toString() === recipeData.id.toString()) ? 'hidden' : 'btn'}
+              disabled={btnDisable}
             >
               Save for later
             </button>
