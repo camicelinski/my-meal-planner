@@ -48,7 +48,7 @@ My Meal Planner App is a weekly **React calendar** with **local API** (JSON Serv
 
 ## ⚙️ Installation
 
-The project uses [node](https://nodejs.org/en/), [npm](https://www.npmjs.com/) and [JSON server](https://www.npmjs.com/package/json-server). Follow the steps below to run it locally.
+The project uses [node](https://nodejs.org/en/), [npm](https://www.npmjs.com/) and [JSON server](https://www.npmjs.com/package/json-server). Follow the steps below to run it locally. 
 
 - Clone the project using:
 
@@ -77,6 +77,8 @@ The project uses [node](https://nodejs.org/en/), [npm](https://www.npmjs.com/) a
 
   http://localhost:3000/
 
+For sending requests to spoonacular API it is necessary to generate a personal key. Free of charge plan is available with a daily limit - see [link](https://spoonacular.com/food-api/pricing) for details. If the daily limit is exceeded only recipes saved in the user's database will be available.
+
 &nbsp;
 
 ## :bulb: Further development
@@ -84,6 +86,7 @@ The project uses [node](https://nodejs.org/en/), [npm](https://www.npmjs.com/) a
 - generate **grocery list** ready for shopping
 - option to add recipes **manually** 
 - **edit** meals and recipes
+- option to **remove** recipes from database
 - testing
 
 &nbsp;

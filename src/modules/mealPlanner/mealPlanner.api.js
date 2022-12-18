@@ -31,13 +31,6 @@ export class MealPlannerAPI {
     return this._fetch(options, `/${id}`)
   }
 
-  filter (field, value) {
-    const options = {
-      method: 'GET'
-    }
-    return this._fetch(options, `?${field}_like=${value}`)
-  }
-
   _fetch (additionalPath = '', options) {
     const url = this.url + additionalPath
     return fetch(url, options)

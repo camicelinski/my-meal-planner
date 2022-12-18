@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import parse from 'html-react-parser'
 
 import Feedback from '../General/Feedback'
 
 import MealPlannerAPI from '../../modules/mealPlanner/mealPlanner.api'
-// import { getRecipeInfo } from '../../modules/spoonacular/spoonacular.actions'
 import { setFieldValue } from '../../modules/form/form.actions'
 import { setShowingMealFormAction } from '../../modules/mealPlanner/mealPlanner.actions'
 
@@ -17,7 +16,6 @@ const RecipeItemSmall = ({ recipeData }) => {
   const { recipes } = useSelector((state) => state.mealPlanner)
 
   const [feedback, setFeedback] = React.useState()
-  const [btnDisable, setBtnDisable] = React.useState(false)
 
   const dispatch = useDispatch()
 
@@ -27,20 +25,9 @@ const RecipeItemSmall = ({ recipeData }) => {
   const imageSize = '312x231'
   const activeClass = 'active'
 
-  useEffect(() => {
-  }, [recipes])
-  /*
-  const getRecipeData = (id) => {
-    const recipeInMyRecipes = recipes.find(recipe => recipe.id.toString() === id.toString())
-    if (recipeInMyRecipes === undefined) {
-      dispatch(getRecipeInfo(id))
-    }
-  } */
-
   const addRecipeToMyRecipes = () => {
     mealPlannerAPI.add('/recipes', recipeData)
     showFeedback({ message: 'Recipe added successfully', type: 'success' })
-    setBtnDisable(true)
   }
 
   const addRecipeToMeal = () => {
@@ -67,7 +54,6 @@ const RecipeItemSmall = ({ recipeData }) => {
       <StyledLink
         activeClassName={activeClass}
         to={`/recipe/${recipeData.id}/${titleToUrl}`}
-        // onClick={() => getRecipeData(recipeData.id)}
       >
         <h2>
           {recipeData.title}
@@ -103,7 +89,6 @@ const RecipeItemSmall = ({ recipeData }) => {
             <button
               onClick={addRecipeToMyRecipes}
               className={recipes.find(r => r.id.toString() === recipeData.id.toString()) ? 'hidden' : 'btn'}
-              disabled={btnDisable}
             >
               Save for later
             </button>

@@ -26,7 +26,6 @@ const RecipeItem = () => {
   const [isLoading, setIsLoading] = React.useState(true)
   const [error, setError] = React.useState(null)
   const [feedback, setFeedback] = React.useState()
-  const [btnDisable, setBtnDisable] = React.useState(false)
 
   const dispatch = useDispatch()
 
@@ -56,16 +55,11 @@ const RecipeItem = () => {
           setIsLoading(false)
         })
     }
-  }, [btnDisable])
-
-  // const recipeInMyRecipes = React.useMemo(() => {
-  //   return recipes.find(recipe => recipe.id.toString() === id)
-  // }, [])
+  }, [])
 
   const addRecipeToMyRecipes = () => {
     mealPlannerAPI.add('/recipes', recipe)
     showFeedback({ message: 'Recipe added successfully', type: 'success' })
-    setBtnDisable(true)
   }
 
   const addRecipeToMeal = () => {
@@ -177,7 +171,6 @@ const RecipeItem = () => {
                 <button
                   onClick={addRecipeToMyRecipes}
                   className={recipeInMyRecipes ? 'hidden' : 'btn'}
-                  disabled={btnDisable}
                 >
                   Save for later
                 </button>

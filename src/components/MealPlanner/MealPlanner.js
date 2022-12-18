@@ -33,8 +33,6 @@ const MealPlanner = () => {
         year={currentDate.getFullYear()}
         preloadedMeals={meals}
         isMealFormVisible={isMealFormVisible}
-        // showingMealForm={showingMealForm}
-        // setShowingMealForm={setShowingMealForm}
       />
       <DailyMealPlan />
     </StyledMealPlanner>

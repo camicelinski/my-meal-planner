@@ -5,13 +5,10 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import Pagination from '../components/Pagination/Pagination'
 import RecipeItemSmall from '../components/RecipeItemSmall'
-// import Loader from '../components/General/Loader'
 
 import StyledLink from '../styled/components/Link.styled'
 import StyledRecipes from '../styled/components/Recipes.styled'
 
-// import SpoonacularAPI from '../modules/spoonacular/spoonacular.api'
-// import { setRecipes } from '../modules/spoonacular/spoonacular.actions'
 import { getMyRecipes } from '../modules/mealPlanner/mealPlanner.actions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -22,9 +19,6 @@ const Recipes = () => {
   const dispatch = useDispatch()
 
   const [phrase, setPhrase] = React.useState('')
-  // const [isLoading, setIsLoading] = React.useState(false)
-
-  // const RecipesAPI = new SpoonacularAPI()
 
   const pageUrl = '/recipes'
   const activeClass = 'active'
@@ -33,16 +27,6 @@ const Recipes = () => {
     window.scrollTo(0, 0)
     dispatch(getMyRecipes())
   }, [])
-  /*
-  const getRecipesData = () => {
-    RecipesAPI.getRecipes(phrase)
-      .then((resp) => {
-        if (resp) {
-          dispatch(setRecipes(resp.results))
-          setIsLoading(false)
-        }
-      })
-  } */
 
   const handleChange = (e) => {
     setPhrase(e.target.value)
@@ -90,7 +74,6 @@ const Recipes = () => {
           >
             <button
               className={'btn'}
-              // onClick={getRecipesData}
             >
               Search in Spoonacular
             </button>

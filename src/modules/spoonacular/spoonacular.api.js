@@ -1,8 +1,6 @@
 class SpoonacularAPI {
   url = 'https://api.spoonacular.com/recipes'
-  key = '79f02f4be50147b08fa604369eee1cad'
-  keymeuceu = 'f88ceda720b349d39340db4552581345'
-  keycami = '77f512dfac8d4076bb4aa7d86ec3718c'
+  key = '107b9170dd4e4a1b90adcd0d06f9b086'
 
   getRecipes = (phrase) => {
     return this._fetch(`/complexSearch?query=${phrase}&apiKey=${this.key}&instructionsRequired=true&addRecipeInformation=true&sort=popularity&sortDirection=desc&number=10`)
