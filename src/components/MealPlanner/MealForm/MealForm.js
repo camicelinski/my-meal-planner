@@ -80,38 +80,20 @@ const MealForm = ({ setIsLoading, setShowingMealForm, addMeal, editMeal, withMea
         noValidate
       >
         {renderFormFields()}
-
-        {withMeal
-          ? (
-            <div className={'btn-container'}>
-              <button onClick={() => editMeal(values)}>Edit meal</button>
-              <button
-                className={'close'}
-                onClick={() => {
-                  setShowingMealForm({ visible: false })
-                  setViewingMeal(values)
-                }}
-              >
-                Cancel (go back to meal view)
-              </button>
-            </div>
-            )
-          : (
-            <div className={'btn-container'}>
-              <button
-                onClick={handleSubmit}
-                type={'submit'}
-              >
-                Add meal
-              </button>
-              <button
-                className={'close'}
-                onClick={() => setShowingMealForm({ visible: false })}
-              >
-                Cancel (go back to calendar)
-              </button>
-            </div>
-            )}
+        <div className={'btn-container'}>
+          <button
+            onClick={handleSubmit}
+            type={'submit'}
+          >
+            Add meal
+          </button>
+          <button
+            className={'close'}
+            onClick={() => setShowingMealForm({ visible: false })}
+          >
+            Cancel (go back to calendar)
+          </button>
+        </div>
       </form>
     </Modal>
   )

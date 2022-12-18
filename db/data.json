@@ -67,13 +67,6 @@
     },
     {
       "date": "2022-12-18",
-      "type": "dinner",
-      "name": "The Best Chili",
-      "servings": "2",
-      "id": 36
-    },
-    {
-      "date": "2022-12-18",
       "type": "lunch",
       "name": "Red Lentil Soup with Chicken and Turnips",
       "servings": "2",
@@ -128,6 +121,14 @@
       "name": "Crockpot \"Refried\" Beans",
       "servings": "2",
       "id": 44
+    },
+    {
+      "date": "2022-12-18",
+      "type": "snacks",
+      "name": "Cannoli Ice Cream w. Pistachios & Dark Chocolate",
+      "servings": "4",
+      "note": "There will be guests",
+      "id": 45
     }
   ],
   "recipes": [

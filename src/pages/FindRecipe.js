@@ -64,6 +64,12 @@ const FindRecipe = () => {
     setPhrase(e.target.value)
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      getRecipesData()
+    }
+  }
+
   const renderError = () => {
     return <p className={'error-server'}>Something went wrong. Try again or return to <Link to={'/'}>home.</Link></p>
   }
@@ -97,6 +103,7 @@ const FindRecipe = () => {
             type={'text'}
             placeholder={'e.g. Chocolate Cookies'}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
         </div>
         <div className={'get-new-recipe'}>

@@ -31,7 +31,7 @@ const Nav = () => {
               to={'/home'}
               onClick={() => setShowingMealFormAction(false)}
             >
-              Meals
+              Meals Calendar
             </StyledLink>
           </li>
           <li>

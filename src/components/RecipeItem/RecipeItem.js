@@ -36,6 +36,7 @@ const RecipeItem = () => {
 
     if (recipeInMyRecipes !== undefined) {
       setRecipeData(recipeInMyRecipes)
+      setIsLoading(false)
     } else {
       dispatch(getRecipeInfo(id))
         .catch((error) => {

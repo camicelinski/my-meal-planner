@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 
 import Error from '../Error'
 
-import { getRecipesList } from '../../../../modules/spoonacular/spoonacular.actions'
+// import { getRecipesList } from '../../../../modules/spoonacular/spoonacular.actions'
 
 import StyledFormField from './FormField.styled'
 import StyledLink from '../../../../styled/components/Link.styled'
@@ -12,13 +12,13 @@ import StyledLink from '../../../../styled/components/Link.styled'
 const FormField = (props) => {
   const { name, label, type, placeholder, options, required, value, onChange, errors } = props
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const activeClass = 'active'
 
-  const getRecipesData = () => {
+  /* const getRecipesData = () => {
     dispatch(getRecipesList(''))
-  }
+  } */
 
   const showErrors = () => {
     return (
@@ -97,7 +97,11 @@ const FormField = (props) => {
             activeClassName={activeClass}
             to={'/find-recipe/1'}
           >
-            <button onClick={getRecipesData}>Get New Recipe</button>
+            <button
+              // onClick={getRecipesData}
+            >
+              Get New Recipe
+            </button>
           </StyledLink>
         </div>
       </>
