@@ -70,7 +70,7 @@ The project uses [node](https://nodejs.org/en/), [npm](https://www.npmjs.com/) a
 - To run JSON-server type in second terminal:
 
 ```bash
-  json-server --watch ./src/db/data.json --port 3005
+  json-server --watch ./db/data.json --port 3005
 ```
 
 - The calendar should be available at:
